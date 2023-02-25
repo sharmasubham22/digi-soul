@@ -1,8 +1,14 @@
+import { Container } from "@mui/system";
+import AllEvents from "./AllEvents";
+import NavBar from "./components/NavBar";
+import EventDetails from "./EventDetails";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome</h1>
-    </div>
+    <Container>
+      <AllEvents />
+      {/* <EventDetails /> */}
+    </Container>
   );
 }
 
