@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";

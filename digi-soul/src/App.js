@@ -1,13 +1,15 @@
 import { Container } from "@mui/system";
-import AllEvents from "./AllEvents";
 import NavBar from "./components/NavBar";
-import EventDetails from "./EventDetails";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import routes from "./routes/routes";
 
 function App() {
+  const router = createBrowserRouter(routes);
+
   return (
     <Container>
-      <AllEvents />
-      {/* <EventDetails /> */}
+      <NavBar />
+      <RouterProvider router={router} />
     </Container>
   );
 }
