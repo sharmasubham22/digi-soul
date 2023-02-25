@@ -1,5 +1,7 @@
 import AllEvents from "../views/AllEvents";
+import UpcomingEvents from "../views/UpcomingEvents";
 import EventDetails from "../views/EventDetails";
+import Reviews from "../views/Reviews";
 
 const routes = [
   {
@@ -15,7 +17,7 @@ const routes = [
   {
     name: "Reviews",
     path: "/reviews",
-    element: <h1>Reviews</h1>,
+    element: <Reviews />,
   },
   {
     name: "Blogs",
@@ -24,8 +26,12 @@ const routes = [
   },
   {
     name: "Events",
-    path: "/events",
+    path: "/events/all",
     element: <AllEvents />,
+  },
+  {
+    path: "/events/upcoming",
+    element: <UpcomingEvents />,
   },
   {
     path: "/event/:id",
@@ -35,7 +41,7 @@ const routes = [
     name: "Insights",
     path: "/insights",
     element: <h1>Insights</h1>,
-  }
+  },
 ];
 
 export default routes;

@@ -13,8 +13,8 @@ export default function CenteredTabs() {
   return (
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="All Events" />
-        <Tab label="Upcoming Events" />
+        <Tab label="All Events" href='/events/all'/>
+        <Tab label="Upcoming Events" href='/events/upcoming'/>
       </Tabs>
     </Box>
   );
