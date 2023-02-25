@@ -11,16 +11,15 @@ import eventsData from "../data/events.json";
 
 function EventDetails() {
   const { id } = useParams();
-  console.log(id);
-  const currentEvent = eventsData.filter((event) => event.eventId == id).at(0);
+  console.log(id)
+  const currentEvent = eventsData.filter((event) => event.eventId === parseInt(id)).at(0);
 
   console.log(currentEvent);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
       <Card sx={{ maxWidth: 600, margin: "0 auto" }}>
-        <CardMedia
-          sx={{ objectFit: "cover" }}
+        <CardMedia sx={{objectFit: "cover"}}
           component="img"
           alt="Event Image"
           height="200"
