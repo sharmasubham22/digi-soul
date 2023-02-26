@@ -134,14 +134,14 @@ function CreateEvent() {
                 <Button
                   type="button"
                   width="40%"
-                  variant="contained"
+                  variant="outlined"
                   onClick={openFileSelector}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Select Thumbnail
                 </Button>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={6} height="100%">
                 <BasicDatePicker />
               </Grid>
               <Grid item xs={12}>
@@ -166,6 +166,7 @@ function CreateEvent() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              href="/events/all"
             >
               Create Event
             </Button>
