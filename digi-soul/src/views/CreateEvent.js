@@ -10,6 +10,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { TextareaAutosize } from "@mui/material";
+import { useFilePicker } from "use-file-picker";
+import BasicDatePicker from "../components/BasicDatePicker";
 
 const theme = createTheme();
 
@@ -37,7 +39,11 @@ function CreateEvent() {
     },
   });
 
-  console.log(formData);
+  const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
+    readAs: "DataURL",
+    accept: "image/*",
+    limitFilesConfig: { max: 1 },
+  });
 
   function handleChange(event) {
     setFormData((prevFormData) => ({
@@ -123,6 +129,20 @@ function CreateEvent() {
                     formData.thumbnail.errorMessage
                   }
                 />
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  type="button"
+                  width="40%"
+                  variant="contained"
+                  onClick={openFileSelector}
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Select Thumbnail
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <BasicDatePicker />
               </Grid>
               <Grid item xs={12}>
                 <TextareaAutosize
