@@ -1,9 +1,34 @@
 [
   {
     "reviewId": 1,
-    "reviewTitle": "CES 2023",
-    "reviewDescription": "CES is the most influential tech event in the world — the proving ground for breakthrough technologies and global innovators. This is where the world's biggest brands do business and meet new partners.",
-    "reviewImg": "https://cdn.ces.tech/ces/media/logos-and-icons/2023/cescta_combologo_clr_350x121.png?width=350&height=121",
-    "reviewYT": "CES is the most influential tech event in the world — the proving ground for breakthrough technologies and global innovators. This is where the world's biggest brands do business and meet new partners, and the sharpest innovators hit the stage. Owned and produced by the Consumer Technology Association (CTA)®, CES features every aspect of the tech sector.\n\nCES showcases companies including manufacturers, developers and suppliers of consumer technology hardware, content, technology delivery systems and more.\n\nIt also includes a conference program where the world's business leaders and pioneering thinkers address the industry's most relevant issues.\n\nFind out more about the thought leaders and industry innovators who will be at CES 2023."
+    "reviewTitle": "Apple iPhone 14 review: meet the iPhone 13S",
+    "reviewDescription": "A slight camera upgrade, new emergency features, and... not a whole lot else",
+    "fullReview": "If those two phrases sound at odds with each other, then let me explain. The iPhone 14 is highly capable. Its chipset can handle everything from day-to-day tasks to graphics-intensive gaming. Its cameras are capable of very good photos, and it records the best video clips you’ll see from any phone in its class. This is all true of the 14, but it’s also true of the iPhone 13. The iPhone 14 is a very good phone, with a handful of useful upgrades over the 13. But it’s a small handful, and that leaves the 14 in a tight spot. The iPhone 13, which came out a year ago and Apple is still selling, is nearly identical to the 14 and $100 cheaper, while the iPhone 14 Pro introduces a lot of interesting new features. And the upcoming iPhone 14 Plus has the same hardware as the 14 but a massive 6.7-inch screen. If the Great iPhone Mini Experiment taught us anything, it’s that people love big screens.",
+    "reviewImg": "https://cdn0.vox-cdn.com/hermano/verge/product/image/9965/226270_IPHONE_14_REGULAR_PHO_akrales_0682.jpeg",
+    "reviewYT": "https://youtu.be/hZP_i6BZpR8"
+  },
+  {
+    "reviewId": 2,
+    "reviewTitle": "Apple iPhone 14 review: meet the iPhone 13S",
+    "reviewDescription": "A slight camera upgrade, new emergency features, and... not a whole lot else",
+    "fullReview": "If those two phrases sound at odds with each other, then let me explain. The iPhone 14 is highly capable. Its chipset can handle everything from day-to-day tasks to graphics-intensive gaming. Its cameras are capable of very good photos, and it records the best video clips you’ll see from any phone in its class. This is all true of the 14, but it’s also true of the iPhone 13. The iPhone 14 is a very good phone, with a handful of useful upgrades over the 13. But it’s a small handful, and that leaves the 14 in a tight spot. The iPhone 13, which came out a year ago and Apple is still selling, is nearly identical to the 14 and $100 cheaper, while the iPhone 14 Pro introduces a lot of interesting new features. And the upcoming iPhone 14 Plus has the same hardware as the 14 but a massive 6.7-inch screen. If the Great iPhone Mini Experiment taught us anything, it’s that people love big screens.",
+    "reviewImg": "https://cdn0.vox-cdn.com/hermano/verge/product/image/9965/226270_IPHONE_14_REGULAR_PHO_akrales_0682.jpeg",
+    "reviewYT": "https://youtu.be/hZP_i6BZpR8"
+  },
+  {
+    "reviewId": 3,
+    "reviewTitle": "Apple iPhone 14 review: meet the iPhone 13S",
+    "reviewDescription": "A slight camera upgrade, new emergency features, and... not a whole lot else",
+    "fullReview": "If those two phrases sound at odds with each other, then let me explain. The iPhone 14 is highly capable. Its chipset can handle everything from day-to-day tasks to graphics-intensive gaming. Its cameras are capable of very good photos, and it records the best video clips you’ll see from any phone in its class. This is all true of the 14, but it’s also true of the iPhone 13. The iPhone 14 is a very good phone, with a handful of useful upgrades over the 13. But it’s a small handful, and that leaves the 14 in a tight spot. The iPhone 13, which came out a year ago and Apple is still selling, is nearly identical to the 14 and $100 cheaper, while the iPhone 14 Pro introduces a lot of interesting new features. And the upcoming iPhone 14 Plus has the same hardware as the 14 but a massive 6.7-inch screen. If the Great iPhone Mini Experiment taught us anything, it’s that people love big screens.",
+    "reviewImg": "https://cdn0.vox-cdn.com/hermano/verge/product/image/9965/226270_IPHONE_14_REGULAR_PHO_akrales_0682.jpeg",
+    "reviewYT": "https://youtu.be/hZP_i6BZpR8"
+  },
+  {
+    "reviewId": 4,
+    "reviewTitle": "Apple iPhone 14 review: meet the iPhone 13S",
+    "reviewDescription": "A slight camera upgrade, new emergency features, and... not a whole lot else",
+    "fullReview": "If those two phrases sound at odds with each other, then let me explain. The iPhone 14 is highly capable. Its chipset can handle everything from day-to-day tasks to graphics-intensive gaming. Its cameras are capable of very good photos, and it records the best video clips you’ll see from any phone in its class. This is all true of the 14, but it’s also true of the iPhone 13. The iPhone 14 is a very good phone, with a handful of useful upgrades over the 13. But it’s a small handful, and that leaves the 14 in a tight spot. The iPhone 13, which came out a year ago and Apple is still selling, is nearly identical to the 14 and $100 cheaper, while the iPhone 14 Pro introduces a lot of interesting new features. And the upcoming iPhone 14 Plus has the same hardware as the 14 but a massive 6.7-inch screen. If the Great iPhone Mini Experiment taught us anything, it’s that people love big screens.",
+    "reviewImg": "https://cdn0.vox-cdn.com/hermano/verge/product/image/9965/226270_IPHONE_14_REGULAR_PHO_akrales_0682.jpeg",
+    "reviewYT": "https://youtu.be/hZP_i6BZpR8"
   }
 ]

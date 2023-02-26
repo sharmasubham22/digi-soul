@@ -2,6 +2,7 @@ import AllEvents from "../views/AllEvents";
 import UpcomingEvents from "../views/UpcomingEvents";
 import EventDetails from "../views/EventDetails";
 import Reviews from "../views/Reviews";
+import ReviewDetails from "../views/ReviewDetails";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
     name: "Reviews",
     path: "/reviews",
     element: <Reviews />,
+  },
+  {
+    path: "/review/:id",
+    element: <ReviewDetails />,
   },
   {
     name: "Blogs",
