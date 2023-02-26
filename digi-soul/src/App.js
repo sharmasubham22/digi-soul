@@ -1,8 +1,16 @@
+import { Container } from "@mui/system";
+import NavBar from "./components/NavBar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import routes from "./routes/routes";
+
 function App() {
+  const router = createBrowserRouter(routes);
+
   return (
-    <div className="App">
-      <h1>Welcome</h1>
-    </div>
+    <Container>
+      <NavBar />
+      <RouterProvider router={router} />
+    </Container>
   );
 }
 
