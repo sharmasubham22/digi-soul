@@ -1,4 +1,4 @@
-import { Button, Container} from "@mui/material";
+import { Button, Container } from "@mui/material";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CenteredTabs from "../components/CenteredTabs";
@@ -6,6 +6,7 @@ import EventCard from "../components/EventCard";
 import eventsData from "../data/upcomingEvents.json";
 
 function UpcomingEvents() {
+  console.log("Upcoming Events rendered!");
   const events = eventsData.map((event) => {
     return (
       <EventCard
@@ -19,7 +20,7 @@ function UpcomingEvents() {
   });
 
   return (
-    <main sx={{marginTop:"100px"}}>
+    <main sx={{ marginTop: "100px" }}>
       <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
         <Button variant="contained" startIcon={<AddIcon />}>
           Create

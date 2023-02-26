@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import React from "react";
 import reviewsData from "../data/reviews.json";
-import ReviewCard from "../components/ReviewCard"
+import ReviewCard from "../components/ReviewCard";
 
 function Reviews() {
   const reviews = reviewsData.map((review) => {
@@ -18,16 +18,18 @@ function Reviews() {
     );
   });
 
-  return <Container
-        sx={{
-          marginTop: "50px",
-          display: "grid",
-          gap: "50px 50px",
-          gridTemplateColumns: "repeat(2, 1fr)",
-        }}
-      >
-        {reviews}
-      </Container>;
+  return (
+    <Container
+      sx={{
+        marginTop: "50px",
+        display: "grid",
+        gap: "50px 50px",
+        gridTemplateColumns: "repeat(2, 1fr)",
+      }}
+    >
+      {reviews}
+    </Container>
+  );
 }
 
 export default Reviews;
