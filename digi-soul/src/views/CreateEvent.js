@@ -9,9 +9,9 @@ import CalendarMonth from "@mui/icons-material/CalendarMonth";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { TextareaAutosize } from "@mui/material";
 import { useFilePicker } from "use-file-picker";
 import BasicDatePicker from "../components/BasicDatePicker";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -20,22 +20,22 @@ function CreateEvent() {
     eventTitle: {
       value: "",
       isError: false,
-      errorMessage: "Only alphabets are allowed",
+      errorMessage: "Minimum input size 5",
     },
     shortDetail: {
       value: "",
       isError: false,
-      errorMessage: "Only alphabets are allowed",
+      errorMessage: "Minimum input size 25",
     },
     thumbnail: {
       value: "",
       isError: false,
-      errorMessage: "Invalid email",
+      errorMessage: "Upload valid image",
     },
     longDetail: {
       value: "",
       isError: false,
-      errorMessage: "Minimum length 8 required",
+      errorMessage: "",
     },
   });
 
@@ -44,6 +44,8 @@ function CreateEvent() {
     accept: "image/*",
     limitFilesConfig: { max: 1 },
   });
+
+  const navigate = useNavigate();
 
   function handleChange(event) {
     setFormData((prevFormData) => ({
@@ -56,8 +58,42 @@ function CreateEvent() {
     }));
   }
 
+  function validate(event) {
+    var isValidationSuccess = true;
+
+    var regexTitle = /(?=.{5,})./;
+    var regexDescription = /(?=.{25,})./;
+
+    if (!regexTitle.test(formData.eventTitle.value)) {
+      isValidationSuccess = false;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        eventTitle: {
+          ...formData.eventTitle,
+          isError: true,
+        },
+      }));
+    }
+
+    if (!regexDescription.test(formData.shortDetail.value)) {
+      isValidationSuccess = false;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        shortDetail: {
+          ...formData.shortDetail,
+          isError: true,
+        },
+      }));
+    }
+
+    return isValidationSuccess;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
+    if (validate()) {
+      navigate("/events/all");
+    }
   }
 
   return (
@@ -115,21 +151,6 @@ function CreateEvent() {
                   }
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="thumbnail"
-                  label="Event Poster"
-                  name="thumbnail"
-                  value={formData.thumbnail.value}
-                  onChange={handleChange}
-                  helperText={
-                    formData.thumbnail.isError &&
-                    formData.thumbnail.errorMessage
-                  }
-                />
-              </Grid>
               <Grid item xs={6}>
                 <Button
                   type="button"
@@ -145,8 +166,9 @@ function CreateEvent() {
                 <BasicDatePicker />
               </Grid>
               <Grid item xs={12}>
-                <TextareaAutosize
+                <TextField
                   required
+                  multiline
                   style={{ width: "100%" }}
                   name="longDetail"
                   value={formData.longDetail.value}
@@ -166,7 +188,6 @@ function CreateEvent() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              href="/events/all"
             >
               Create Event
             </Button>
