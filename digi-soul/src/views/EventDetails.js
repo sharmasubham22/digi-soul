@@ -34,7 +34,7 @@ function EventDetails() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" href={`/events`}>
+          <Button size="small" href={`/events/all`}>
             Back
           </Button>
           <Button size="small">Save</Button>
