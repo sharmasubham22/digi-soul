@@ -29,11 +29,14 @@ export default function MyEventCard(props) {
       <Container>
         <CardActions>
           <Button size="small">Save</Button>
-          <Button size="small" href={`/events/${id}`}>
+          <Button size="small" href={`/event/${id}`}>
             Details
           </Button>
           <Button size="small">Update</Button>
-          <Button size="small" startIcon={<DeleteIcon color="error" />}></Button>
+          <Button
+            size="small"
+            startIcon={<DeleteIcon color="error" />}
+          ></Button>
         </CardActions>
       </Container>
     </Card>

@@ -181,7 +181,7 @@ const NavBar = () => {
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography
                     textAlign="center"
-                    // component="a"
+                    component="a"
                     href="/events/myevents"
                   >
                     {setting.name}
