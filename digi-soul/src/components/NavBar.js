@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,14 +11,14 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import routes from "../routes/routes";
+import dslogo from "../p-images/ds-logo.png";
+import "./navbar.css";
+
 
 // const pages = ["Products", "Reviews", "Blogs", "Events", "Insights"];
 const settings = [
-  "Profile",
-  "Update Profile",
-  "Change Password",
+  "My Profile",
   "Saved Items",
   "My Events",
   "My Reviews",
@@ -50,10 +50,17 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      sx={{
+        bgcolor: "white",
+        boxShadow:
+          "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+      }}
+      position="sticky"
+    >
       <Container maxWidth="l">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -68,7 +75,12 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            DigiSoul
+            <img
+              src={dslogo}
+              alt="logo"
+              title="DigiSoul"
+              className="logo-main"
+            />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -79,6 +91,7 @@ const NavBar = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{ color: "black" }}
             >
               <MenuIcon />
             </IconButton>
@@ -100,19 +113,21 @@ const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {routes.filter(route => route.name).map((route) => (
-                <MenuItem
-                  key={route.name}
-                  onClick={handleCloseNavMenu}
-                  component="a"
-                  href={route.path}
-                >
-                  <Typography textAlign="center">{route.name}</Typography>
-                </MenuItem>
-              ))}
+              {routes
+                .filter((route) => route.name)
+                .map((route) => (
+                  <MenuItem
+                    key={route.name}
+                    onClick={handleCloseNavMenu}
+                    component="a"
+                    href={route.path}
+                  >
+                    <Typography textAlign="center">{route.name}</Typography>
+                  </MenuItem>
+                ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -129,26 +144,28 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            DigiSoul
+            <img src={dslogo} alt="logo" className="logo-nav" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {routes.filter(route => route.name).map((route) => (
-              <Button
-                key={route.name}
-                onClick={handleCloseNavMenu}
-                component="a"
-                href={route.path}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {route.name}
-              </Button>
-            ))}
+            {routes
+              .filter((route) => route.name)
+              .map((route) => (
+                <Button
+                  key={route.name}
+                  onClick={handleCloseNavMenu}
+                  component="a"
+                  href={route.path}
+                  sx={{ ml: 3, my: 2, color: "black", display: "block" }}
+                >
+                  {route.name}
+                </Button>
+              ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
