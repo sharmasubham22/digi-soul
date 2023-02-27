@@ -1,14 +1,13 @@
 import { Button, Container, Grid } from "@mui/material";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
-import CenteredTabs from "../components/CenteredTabs";
-import EventCard from "../components/EventCard";
+import MyEventCard from "../components/MyEventCard";
 import eventsData from "../data/events.json";
 
-function AllEvents() {
+function MyEvents() {
   return (
     <Container sx={{ marginTop: "25px" }}>
-      <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
+      <Container maxWidth="l">
         <Button
           variant="contained"
           startIcon={<AddIcon />}
@@ -16,13 +15,12 @@ function AllEvents() {
         >
           Create
         </Button>
-        <CenteredTabs />
       </Container>
       <Container sx={{ py: 8 }} maxWidth="l">
         <Grid container spacing={8}>
           {eventsData.map((event) => (
             <Grid item key={event.eventId} xs={12} sm={6} md={4}>
-              <EventCard
+              <MyEventCard
                 key={event.eventId}
                 id={event.eventId}
                 name={event.eventName}
@@ -37,4 +35,4 @@ function AllEvents() {
   );
 }
 
-export default AllEvents;
+export default MyEvents;

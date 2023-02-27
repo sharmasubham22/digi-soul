@@ -15,20 +15,14 @@ import routes from "../routes/routes";
 import dslogo from "../p-images/ds-logo.png";
 import "./navbar.css";
 
-
-// const pages = ["Products", "Reviews", "Blogs", "Events", "Insights"];
 const settings = [
-  "My Profile",
-  "Saved Items",
-  "My Events",
-  "My Reviews",
-  "My Blogs",
-  "Logout",
+  { name: "My Profile", path: "" },
+  { name: "Saved Items", path: "" },
+  { name: "My Events", path: "/events/myevents" },
+  { name: "My Reviews", path: "" },
+  { name: "My Blogs", path: "" },
+  { name: "Logout", path: "" },
 ];
-
-// const StyledToolbar = styled(Toolbar)({
-
-// })
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -127,7 +121,6 @@ const NavBar = () => {
                 ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -186,7 +179,13 @@ const NavBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography
+                    textAlign="center"
+                    component="a"
+                    href="/events/myevents"
+                  >
+                    {setting.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
