@@ -22,7 +22,7 @@ function AllEvents() {
   return (
     <main sx={{ marginTop: "100px" }}>
       <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
-        <Button variant="contained" startIcon={<AddIcon />}>
+        <Button variant="contained" startIcon={<AddIcon />} href="/events/create">
           Create
         </Button>
         <CenteredTabs />

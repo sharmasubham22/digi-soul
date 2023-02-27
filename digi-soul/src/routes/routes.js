@@ -3,6 +3,7 @@ import UpcomingEvents from "../views/UpcomingEvents";
 import EventDetails from "../views/EventDetails";
 import Reviews from "../views/Reviews";
 import ReviewDetails from "../views/ReviewDetails";
+import CreateEvent from "../views/CreateEvent";
 import AllProducts from "../views/AllProducts";
 import Smartphones from "../views/Smartphones";
 import ProductDetails from "../views/ProductDetails";
@@ -49,6 +50,10 @@ const routes = [
   {
     path: "/events/upcoming",
     element: <UpcomingEvents />,
+  },
+  {
+    path: "/events/create",
+    element: <CreateEvent />,
   },
   {
     path: "/event/:id",
