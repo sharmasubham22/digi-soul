@@ -18,7 +18,7 @@ function AllEvents() {
         </Button>
         <CenteredTabs />
       </Container>
-      <Container sx={{ py: 8 }} maxWidth="l">
+      <Container sx={{ py: 8 }}>
         <Grid container spacing={8}>
           {eventsData.map((event) => (
             <Grid item key={event.eventId} xs={12} sm={6} md={4}>

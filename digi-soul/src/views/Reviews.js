@@ -8,7 +8,7 @@ function Reviews() {
     <Container sx={{ py: 8 }} maxWidth="l">
       <Grid container spacing={8}>
         {reviewsData.map((review) => (
-          <Grid item key={review.reviewId} xs={12} sm={6} md={6}>
+          <Grid item key={review.reviewId} xs={12} sm={12} md={6}>
             <ReviewCard
               key={review.reviewId}
               id={review.reviewId}

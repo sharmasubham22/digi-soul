@@ -15,6 +15,7 @@ export default function EventCard(props) {
         alt="Event Thumbnail"
         height="160"
         image={imgurl}
+        sx={{objectFit: "contain"}}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
