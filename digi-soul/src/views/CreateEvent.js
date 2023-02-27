@@ -154,10 +154,9 @@ function CreateEvent() {
               <Grid item xs={6}>
                 <Button
                   type="button"
-                  width="40%"
                   variant="outlined"
                   onClick={openFileSelector}
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 1, mb: 2 }}
                 >
                   Select Thumbnail
                 </Button>
