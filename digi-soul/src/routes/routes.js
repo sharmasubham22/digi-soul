@@ -4,17 +4,29 @@ import EventDetails from "../views/EventDetails";
 import Reviews from "../views/Reviews";
 import ReviewDetails from "../views/ReviewDetails";
 import CreateEvent from "../views/CreateEvent";
+import AllProducts from "../views/AllProducts";
+import Smartphones from "../views/Smartphones";
+import ProductDetails from "../views/ProductDetails";
+import Home from "../views/Home";
 
 const routes = [
   {
     name: "Home",
     path: "/",
-    element: <h1>Hello Hello!</h1>,
+    element: <Home/>,
   },
   {
     name: "Products",
-    path: "/products",
-    element: <h1>Products</h1>,
+    path: "/product/all",
+    element:<AllProducts/>,
+  },
+  {
+    path: "/product/phones",
+    element: <Smartphones/>,
+  },
+  {
+    path: "/product/:id",
+    element: <ProductDetails/>,
   },
   {
     name: "Reviews",
@@ -51,6 +63,11 @@ const routes = [
     name: "Insights",
     path: "/insights",
     element: <h1>Insights</h1>,
+  },
+  {
+    name: "Support",
+    path: "/support",
+    element: <h1>Support</h1>,
   },
 ];
 
