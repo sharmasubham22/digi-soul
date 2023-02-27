@@ -20,7 +20,7 @@ function AllEvents() {
   });
 
   return (
-    <main sx={{ marginTop: "100px" }}>
+    <Container sx={{ marginTop: "25px" }}>
       <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
         <Button
           variant="contained"
@@ -32,7 +32,7 @@ function AllEvents() {
         <CenteredTabs />
       </Container>
       <EventsGridContainer events={events} />
-    </main>
+    </Container>
   );
 }
 
