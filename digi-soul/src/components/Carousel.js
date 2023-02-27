@@ -8,7 +8,7 @@ function CarouselComponent() {
   const bgImages = [bg1, bg2, bg3];
   return (
     <>
-      <div className="home__container">
+      <div >
         <Carousel
           autoPlay={true}
           indicators={true}
