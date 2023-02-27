@@ -8,6 +8,7 @@ import AllProducts from "../views/AllProducts";
 import Smartphones from "../views/Smartphones";
 import ProductDetails from "../views/ProductDetails";
 import Home from "../views/Home";
+import MyEvents from "../views/MyEvents";
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
   {
     path: "/events/create",
     element: <CreateEvent />,
+  },
+
+  {
+    path: "/events/myevents",
+    element: <MyEvents />,
   },
   {
     path: "/event/:id",

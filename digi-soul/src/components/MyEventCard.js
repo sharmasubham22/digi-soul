@@ -5,8 +5,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Container } from "@mui/system";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function EventCard(props) {
+export default function MyEventCard(props) {
   const { id, name, details, imgurl } = props;
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -24,12 +26,16 @@ export default function EventCard(props) {
           {details}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Save</Button>
-        <Button size="small" href={`/event/${id}`}>
-          More Details
-        </Button>
-      </CardActions>
+      <Container>
+        <CardActions>
+          <Button size="small">Save</Button>
+          <Button size="small" href={`/events/${id}`}>
+            Details
+          </Button>
+          <Button size="small">Update</Button>
+          <Button size="small" startIcon={<DeleteIcon color="error" />}></Button>
+        </CardActions>
+      </Container>
     </Card>
   );
 }
