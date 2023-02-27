@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CenteredTabs from "../components/CenteredTabs";
 import EventCard from "../components/EventCard";
 import eventsData from "../data/events.json";
+import EventsGridContainer from "../components/EventsGridContainer";
 
 function AllEvents() {
   console.log("All Events Rendered!");
@@ -22,21 +23,16 @@ function AllEvents() {
   return (
     <main sx={{ marginTop: "100px" }}>
       <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
-        <Button variant="contained" startIcon={<AddIcon />} href="/events/create">
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          href="/events/create"
+        >
           Create
         </Button>
         <CenteredTabs />
       </Container>
-      <Container
-        sx={{
-          marginTop: "50px",
-          display: "grid",
-          gap: "50px 50px",
-          gridTemplateColumns: "repeat(3, 1fr)",
-        }}
-      >
-        {events}
-      </Container>
+      <EventsGridContainer events={events} />
     </main>
   );
 }
