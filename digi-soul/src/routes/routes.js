@@ -9,6 +9,11 @@ import Smartphones from "../views/Smartphones";
 import ProductDetails from "../views/ProductDetails";
 import Home from "../views/Home";
 import MyEvents from "../views/MyEvents";
+import AddUser from '../components/AddUser';
+import BlogList from '../components/BlogList';
+import ViewBlog from '../components/ViewBlog';
+import AddBlog from '../components/AddBlog';
+import SecondBlog from '../components/SecondBlog';
 
 const routes = [
   {
@@ -40,8 +45,24 @@ const routes = [
   },
   {
     name: "Blogs",
-    path: "/blogs",
-    element: <h1>Blogs</h1>,
+    path: "/homePage",
+    element:<BlogList />,
+  },
+  {
+    path: "/blog1",
+    element: <ViewBlog />,
+  },
+  {
+    path: "/secondblog",
+    element: <SecondBlog />,
+  },
+  {
+    path: "/addblog",
+    element: <AddBlog />,
+  },
+  {
+    path: "/add",
+    element: <AddUser />,
   },
   {
     name: "Events",
