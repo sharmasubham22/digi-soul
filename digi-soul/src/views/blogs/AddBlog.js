@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import { FormControl, FormGroup, Input, InputLabel, TextField } from '@mui/material';
+import { FormControl, FormGroup, Input, InputLabel} from '@mui/material';
 
 export default function ColorTextFields() {
   const handleFileUpload = (event) => {
@@ -11,11 +10,11 @@ export default function ColorTextFields() {
   };
 
   return (
-    <React.Fragment>
-      <div style={{ backgroundColor: "#FFFFF7" }}>
+    <>
+      <div>
         <div>
           <>
-            <Container maxWidth="xl">
+            <Container maxWidth="l">
               <Grid container spacing={2} alignItems="center">
                 <Grid item>
                 </Grid>
@@ -23,9 +22,7 @@ export default function ColorTextFields() {
             </Container>
           </>
           <br />
-          <NavLink to="/addblog" role="button" class="btn btn-secondary btn-block mx-4" style={{float: 'right'}}>
-            Add Blog
-          </NavLink>
+          
         </div>
         <Container sx={{ py: 8 }} maxWidth="md">
           <h1>Add Blog</h1>
@@ -49,6 +46,6 @@ export default function ColorTextFields() {
           </FormGroup>
         </Container>
       </div>
-    </React.Fragment>
+    </>
   );
 }

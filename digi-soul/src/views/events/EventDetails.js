@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
 import { useParams } from "react-router-dom";
-import eventsData from "../data/events.json";
+import eventsData from "../../data/events.json";
 
 function EventDetails() {
   const { id } = useParams();

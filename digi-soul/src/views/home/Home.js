@@ -1,6 +1,6 @@
-import CarouselComponent from "../components/Carousel";
+import CarouselComponent from "../../components/Carousel";
 import Grid from "@mui/material/Grid";
-import ds from '../p-images/ds.gif'
+import ds from '../../p-images/ds.gif'
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import "./home.css"

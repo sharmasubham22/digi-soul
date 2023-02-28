@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
 import { useParams } from "react-router-dom";
-import reviewsData from "../data/reviews.json";
+import reviewsData from "../../data/reviews.json";
 
 function ReviewDetails() {
   const { id } = useParams();

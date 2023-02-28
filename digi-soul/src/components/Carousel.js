@@ -1,5 +1,5 @@
 import Carousel from "react-material-ui-carousel";
-import '../views/products.css'
+import '../views/products/products.css'
 import bg1 from "../p-images/iphone.png";
 import bg2 from "../p-images/insta.png";
 import bg3 from "../p-images/rog.png";
