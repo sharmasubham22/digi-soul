@@ -14,25 +14,28 @@ import BlogList from "../views/blogs/BlogList";
 import ViewBlog from '../views/blogs/ViewBlog';
 import AddBlog from '../views/blogs/AddBlog';
 import SecondBlog from '../views/blogs/SecondBlog';
+import Login from '../views/Login';
+import SignUp from '../views/SignUp';
+import ForgotPassword from '../views/ForgotPassword';
 
 const routes = [
   {
     name: "Home",
     path: "/",
-    element: <Home/>,
+    element: <Home />,
   },
   {
     name: "Products",
     path: "/product/all",
-    element:<AllProducts/>,
+    element: <AllProducts />,
   },
   {
     path: "/product/phones",
-    element: <Smartphones/>,
+    element: <Smartphones />,
   },
   {
     path: "/product/:id",
-    element: <ProductDetails/>,
+    element: <ProductDetails />,
   },
   {
     name: "Reviews",
@@ -46,7 +49,7 @@ const routes = [
   {
     name: "Blogs",
     path: "/homePage",
-    element:<BlogList />,
+    element: <BlogList />,
   },
   {
     path: "/blog1",
@@ -95,6 +98,18 @@ const routes = [
     name: "Support",
     path: "/support",
     element: <h1>Support</h1>,
+  },
+  {
+    path: "/login",
+    element: <Login/>,
+  },
+  {
+    path: "/signup",
+    element: <SignUp/>,
+  },
+  {
+    path: "/forgotpassword",
+    element: <ForgotPassword/>,
   },
 ];
 
