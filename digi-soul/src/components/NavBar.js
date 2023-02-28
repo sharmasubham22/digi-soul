@@ -183,6 +183,8 @@ const NavBar = () => {
                     textAlign="center"
                     component="a"
                     href="/events/myevents"
+                    sx={{textDecoration:"none"}}
+                    color="black"
                   >
                     {setting.name}
                   </Typography>
