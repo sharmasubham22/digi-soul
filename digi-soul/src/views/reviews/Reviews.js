@@ -1,7 +1,7 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
-import reviewsData from "../data/reviews.json";
-import ReviewCard from "../components/ReviewCard";
+import reviewsData from "../../data/reviews.json"
+import ReviewCard from "../../components/ReviewCard";
 
 function Reviews() {
   return (

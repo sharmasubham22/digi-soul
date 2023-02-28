@@ -1,9 +1,9 @@
 import { Button, Container, Grid } from "@mui/material";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
-import CenteredTabs from "../components/CenteredTabs";
-import EventCard from "../components/EventCard";
-import eventsData from "../data/events.json";
+import CenteredTabs from "../../components/CenteredTabs";
+import EventCard from "../../components/EventCard";
+import eventsData from "../../data/events.json";
 
 function AllEvents() {
   return (

@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import productsData from "../data/products.json";
 import { useParams } from "react-router-dom";
-import '../views/productDetails.css';
+import '../views/products/productDetails.css';
 
 export default function SpecsTable() {
     

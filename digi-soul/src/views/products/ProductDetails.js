@@ -1,11 +1,11 @@
 import { Container } from "@mui/system";
 import { useParams } from "react-router-dom";
-import productsData from "../data/products.json";
+import productsData from "../../data/products.json";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import './productDetails.css';
-import SpecsTable from "../components/SpecsTable";
+import SpecsTable from "../../components/SpecsTable";
 
 export default function ProductDetails(){
     const { id } = useParams();

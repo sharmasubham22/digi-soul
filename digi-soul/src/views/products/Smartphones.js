@@ -1,12 +1,12 @@
-import {Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import React from "react";
-import ProductCard from "../components/ProductCard";
-import productsData from "../data/products.json";
-import ProductTabs from "../components/ProductTabs";
-import './products.css';
-import CarouselComponent from "../components/Carousel";
+import ProductTabs from "../../components/ProductTabs";
+import ProductCard from "../../components/ProductCard";
+import productsData from "../../data/smartphones.json";
+import "./products.css";
+import CarouselComponent from "../../components/Carousel";
 
-function AllProducts() {
+function Smartphones() {
   return (
     <Container sx={{ marginTop: "25px" }}>
       <CarouselComponent />
@@ -33,4 +33,4 @@ function AllProducts() {
   );
 }
 
-export default AllProducts;
+export default Smartphones;

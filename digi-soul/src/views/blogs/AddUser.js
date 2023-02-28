@@ -1,6 +1,6 @@
 import React from 'react';
 import UserForm from './UserForm';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/system';
 
 const AddUser = ({ history, users, setUsers }) => {
     const handleOnSubmit = (user) => {

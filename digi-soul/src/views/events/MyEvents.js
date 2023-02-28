@@ -1,8 +1,8 @@
 import { Button, Container, Grid } from "@mui/material";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
-import MyEventCard from "../components/MyEventCard";
-import eventsData from "../data/events.json";
+import MyEventCard from "../../components/MyEventCard";
+import eventsData from "../../data/events.json";
 
 function MyEvents() {
   return (
