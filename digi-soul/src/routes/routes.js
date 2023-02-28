@@ -9,25 +9,32 @@ import Smartphones from "../views/Smartphones";
 import ProductDetails from "../views/ProductDetails";
 import Home from "../views/Home";
 import MyEvents from "../views/MyEvents";
+import AddUser from '../components/AddUser';
+import BlogList from '../components/BlogList';
+// import useLocalStorage from '../hooks/useLocalStorage';
+import ViewBlog from '../components/ViewBlog';
+import AddBlog from '../components/AddBlog';
+import SecondBlog from '../components/SecondBlog';
+
 
 const routes = [
   {
     name: "Home",
     path: "/",
-    element: <Home/>,
+    element: <Home />,
   },
   {
     name: "Products",
     path: "/product/all",
-    element:<AllProducts/>,
+    element: <AllProducts />,
   },
   {
     path: "/product/phones",
-    element: <Smartphones/>,
+    element: <Smartphones />,
   },
   {
     path: "/product/:id",
-    element: <ProductDetails/>,
+    element: <ProductDetails />,
   },
   {
     name: "Reviews",
@@ -40,8 +47,24 @@ const routes = [
   },
   {
     name: "Blogs",
-    path: "/blogs",
-    element: <h1>Blogs</h1>,
+    path: "/homePage",
+    element:<BlogList />,
+  },
+  {
+    path: "/blog1",
+    element: <ViewBlog />,
+  },
+  {
+    path: "/secondblog",
+    element: <SecondBlog />,
+  },
+  {
+    path: "/addblog",
+    element: <AddBlog />,
+  },
+  {
+    path: "/add",
+    element: <AddUser />,
   },
   {
     name: "Events",
@@ -75,6 +98,7 @@ const routes = [
     path: "/support",
     element: <h1>Support</h1>,
   },
+
 ];
 
 export default routes;
