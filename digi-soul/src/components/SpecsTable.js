@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import productsData from "../data/products.json";
 import { useParams } from "react-router-dom";
+import '../views/productDetails.css';
 
 export default function SpecsTable() {
     
@@ -29,7 +30,7 @@ export default function SpecsTable() {
       ];
   return (
     <TableContainer component={Paper} sx={{mt:5 }}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table className="specs-table" aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Specification</TableCell>
