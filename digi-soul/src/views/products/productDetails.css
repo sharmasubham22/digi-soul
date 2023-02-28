@@ -16,6 +16,11 @@
   margin: 20px 0;
 }
 
+.product-name{
+  font-size: 36px;
+  font-weight: bold;
+}
+
 @media screen and (max-width:500px ) {
   .product-details{
       display: block;
