@@ -1,8 +1,7 @@
 import React from 'react';
 import UserForm from './UserForm';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from '@material-ui/core';
 
-    
 const AddUser = ({ history, users, setUsers }) => {
     const handleOnSubmit = (user) => {
         setUsers([...users, user]);
@@ -10,9 +9,9 @@ const AddUser = ({ history, users, setUsers }) => {
     };
 
     return (
-        <React.Fragment>
-        <UserForm handleOnSubmit={handleOnSubmit} />
-        </React.Fragment>
+        <Container maxWidth="sm">
+            <UserForm handleOnSubmit={handleOnSubmit} />
+        </Container>
     );
 };
 
