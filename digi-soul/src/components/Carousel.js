@@ -1,11 +1,12 @@
 import Carousel from "react-material-ui-carousel";
-import '../views/products.css'
-import bg1 from "../p-images/iphone.png";
-import bg2 from "../p-images/insta.png";
-import bg3 from "../p-images/rog.png";
+import '../views/products/products.css'
 
 function CarouselComponent() {
-  const bgImages = [bg1, bg2, bg3];
+  const images = [
+    "https://thumbs.dreamstime.com/b/vinnytsia-ukraine-september-vector-banner-iphone-vector-illustration-app-web-presentation-design-vector-banner-iphone-230042240.jpg",
+    "https://dlcdnwebimgs.asus.com/gain/61E66D12-AD75-475E-A70D-37169A60BDF0/fwebp",
+    "https://www.cliftoncameras.co.uk/uploads/Shop%20Page/Sony/sony-a7-IV-banner.jpg",
+  ];
   return (
     <>
       <div >
@@ -16,11 +17,11 @@ function CarouselComponent() {
           navButtonsAlwaysVisible={true}
           navButtonsAlwaysInvisible={false}
         >
-          {bgImages.map((item, i) => (
+          {images.map((item, i) => (
             <img
               key={i}
               src={item}
-              alt={`Amazon Background ${i}`}
+              alt="carousel-img"
               className="c-image"
             />
           ))}

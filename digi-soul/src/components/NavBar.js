@@ -21,7 +21,7 @@ const settings = [
   { name: "My Events", path: "/events/myevents" },
   { name: "My Reviews", path: "" },
   { name: "My Blogs", path: "" },
-  { name: "Logout", path: "" },
+  { name: "Logout", path: "/login" },
 ];
 
 const NavBar = () => {
@@ -182,7 +182,9 @@ const NavBar = () => {
                   <Typography
                     textAlign="center"
                     component="a"
-                    href="/events/myevents"
+                    href={setting.path}
+                    sx={{textDecoration:"none"}}
+                    color="black"
                   >
                     {setting.name}
                   </Typography>

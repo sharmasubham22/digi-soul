@@ -17,8 +17,22 @@ export default function ProductTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-      <Tabs onChange={handleChange} value={value} centered>
+    <Box className="tabs-box" sx={{ bgcolor: "background.paper" }}>
+      <Tabs
+        onChange={handleChange}
+        className="tabs"
+        TabIndicatorProps={{ sx: { display: "none" } }}
+        padding="0"
+        sx={{
+          "& .MuiTabs-flexContainer": {
+            flexWrap: "wrap",
+            "& .MuiTab-root": { padding:"5px", margin:"auto" },
+            "& .Mui-selected": { color:"#03989E", border:"1px solid #03989E" },
+          },
+        }}
+        value={value}
+        centered
+      >
         <Tab label="All" href="/product/all" />
         <Tab label="Smart Phones" href="/product/phones" />
         <Tab label="Laptops" href="/product/phones" />
