@@ -9,13 +9,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
 
 const theme = createTheme();
 
 export default function Login(){
-    const navigate = useNavigate();
     const [formData, setFormData] = React.useState({
         email: {
           value: "",
@@ -81,9 +79,8 @@ export default function Login(){
     
           if (validate() && formData.password.isError === false &&
               formData.email.isError === false){
-                navigate("/", {
-                    state: formData
-                });
+                localStorage.setItem("login", 'true')
+                window.location.href = "/"
               }
       }
 
