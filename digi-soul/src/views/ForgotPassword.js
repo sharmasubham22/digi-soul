@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { Link } from "@mui/material";
 
 const theme = createTheme();
 
@@ -32,7 +31,7 @@ export default function ForgotPassword(){
             isError: false,
             errorMessage: "Passwords do not match",
           }
-      });
+    });
     
       console.log(formData);
     
@@ -49,15 +48,10 @@ export default function ForgotPassword(){
     
       function validate(event) {
         var isValidationSuccess = true;
-    
-        var regexLetters = /^[A-Za-z]+$/;
-        var regexEmail =
-          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         var regexPassword = /(?=.{8,})./;
 
-        
         // TODO: OTP validation 
-        if (formData.otp.value == ""){
+        if (formData.otp.value === ""){
             isValidationSuccess = false;
             setFormData((prevFormData) => ({
                 ...prevFormData,
