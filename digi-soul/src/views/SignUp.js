@@ -134,9 +134,7 @@ export default function SignUp() {
           formData.firstName.isError === false &&
           formData.lastName.isError === false &&
           formData.email.isError === false){
-            navigate("/welcome", {
-                state: formData
-            });
+            navigate("/");
           }
   }
 
