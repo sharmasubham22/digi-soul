@@ -9,27 +9,51 @@ const router = express.Router();
  * @params request, response
  * @return events
  */
-router.get("/", async (req, res) => {
-  try {
-    const events = await EventService.getAllEvents();
-    if (events.length > 0) {
-      res.status(200).json({
-        message: "Users retrieved",
-        success: true,
-        events: events,
-      });
-    } else {
-      res.status(404).json({
-        message: "No event found",
+// router.get("/", async (req, res) => {
+//   try {
+//     const events = await EventService.getAllEvents();
+//     if (events.length > 0) {
+//       res.status(200).json({
+//         message: "Users retrieved",
+//         success: true,
+//         events: events,
+//       });
+//     } else {
+//       res.status(404).json({
+//         message: "No event found",
+//         success: false,
+//       });
+//     }
+//   } catch (err) {
+//     res.status(500).json({
+//       message: err.message || "Internal server error.",
+//       success: false,
+//     });
+//   }
+// });
+
+router.get("/", (req, res) => {
+  EventService.getAllEvents()
+    .then((events) => {
+      if (events.length > 0) {
+        res.status(200).json({
+          message: "Events retrieved",
+          success: true,
+          users: events,
+        });
+      } else {
+        res.status(404).json({
+          message: "No event found",
+          success: false,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message,
         success: false,
       });
-    }
-  } catch (err) {
-    res.status(500).json({
-      message: err.message || "Internal server error.",
-      success: false,
     });
-  }
 });
 
 /**
@@ -74,23 +98,16 @@ router.get("/", async (req, res) => {
 router.get("/event/:eventId", (req, res) => {
   EventService.getEvent(req.params.eventId)
     .then((event) => {
-      if (event) {
-        return res.status(200).json({
-          success: true,
-          message: "Event fetched",
-          event: event,
-        });
-      } else {
-        return res.status(404).json({
-          success: false,
-          message: "Event with given id not found",
-        });
-      }
+      return res.status(200).json({
+        success: true,
+        message: "Event fetched",
+        event: event,
+      });
     })
     .catch((err) => {
-      res.status(500).json({
-        message: "Something went wrong",
+      return res.status(404).json({
         success: false,
+        message: "Event with given id not found",
       });
     });
 });
@@ -162,7 +179,7 @@ router.put("/event/:eventId", async (req, res) => {
       });
     }
     const updatedResult = await EventService.updateEvent(eventId, event);
-    if (updateResult.matchedCount) {
+    if (updatedResult.matchedCount) {
       res.status(200).json({
         message: "Event updated",
         success: true,
@@ -187,32 +204,56 @@ router.put("/event/:eventId", async (req, res) => {
  * @params request, response
  * @return event
  */
-router.post("/", async (req, res) => {
-  try {
-    const event = req.body;
-    // if (!event) {
-    //   return res.json({
-    //     success: false,
-    //     message: "Required parameters are missing",
-    //     data: "event",
-    //   });
-    // }
-    const createdEvent = await EventService.createNewEvent(event);
-    if (createdEvent) {
-      res.status(200).json({
-        message: "Event created",
-        success: true,
-        event: event,
+// router.post("/", async (req, res) => {
+//   try {
+//     const event = req.body;
+//     if (!event) {
+//       return res.json({
+//         success: false,
+//         message: "Required parameters are missing",
+//         data: "event",
+//       });
+//     }
+//     const createdEvent = await EventService.createNewEvent(event);
+//     if (createdEvent) {
+//       res.status(200).json({
+//         message: "Event created",
+//         success: true,
+//         event: event,
+//       });
+//     } else {
+//       res.status(200).json({
+//         message: "Unable to create event",
+//         success: false,
+//       });
+//     }
+//   } catch (err) {
+//     return res.status(500).json({
+//       message: "Internal server error. Unable to create event.",
+//       success: false,
+//     });
+//   }
+// });
+
+router.post("/", (req, res) => {
+  const event = req.body;
+  if (event) {
+    EventService.createNewEvent(event)
+      .then((newEvent) => {
+        res.status(200).json({
+          message: "Event added",
+          success: true,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          message: err.message,
+          success: false,
+        });
       });
-    } else {
-      res.status(200).json({
-        message: "Unable to create event",
-        success: false,
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({
-      message: "Internal server error. Unable to create event.",
+  } else {
+    res.status(500).json({
+      message: "Invalid Input - Unable to add user",
       success: false,
     });
   }

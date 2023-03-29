@@ -5,8 +5,7 @@ const getEvent = (eventId) => {
 };
 
 const getAllEvents = async () => {
-  const fetchedEvents = await Event.find({});
-  return fetchedEvents;
+  return Event.find({});
 };
 
 const createNewEvent = async (event) => {
