@@ -7,7 +7,7 @@ var User = require('../model/user_details');
 
 
 const addUser = async (data) => {
-    if (data?.email && data?.password){
+    if (data?.email && data?.password && data?.firstName && data?.lastName){
         let resp;
         await User.collection.findOne({'email': data.email}).then((_data) => {
             console.log(_data)
@@ -23,7 +23,7 @@ const addUser = async (data) => {
         return resp;
     }
     else {
-        return {'success': false, 'message': 'user not added'};
+        return {'success': false, 'message': 'user not added. Missing params'};
     }
 }
 
