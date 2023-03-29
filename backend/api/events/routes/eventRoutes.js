@@ -98,16 +98,23 @@ router.get("/", (req, res) => {
 router.get("/event/:eventId", (req, res) => {
   EventService.getEvent(req.params.eventId)
     .then((event) => {
-      return res.status(200).json({
-        success: true,
-        message: "Event fetched",
-        event: event,
-      });
+      if (event) {
+        return res.status(200).json({
+          success: true,
+          message: "Event fetched",
+          event: event,
+        });
+      } else {
+        return res.status(404).json({
+          success: false,
+          message: "Event with given id not found",
+        });
+      }
     })
     .catch((err) => {
-      return res.status(404).json({
+      return res.status(500).json({
         success: false,
-        message: "Event with given id not found",
+        message: "Something went wrong",
       });
     });
 });
@@ -118,38 +125,61 @@ router.get("/event/:eventId", (req, res) => {
  * @params request, response
  * @return result
  */
-router.delete("/event/:eventId", async (req, res) => {
-  try {
-    const eventIdString = req.params.eventId;
-    if (!eventIdString) {
-      return res.json({
+// router.delete("/event/:eventId", async (req, res) => {
+//   try {
+//     const eventIdString = req.params.eventId;
+//     if (!eventIdString) {
+//       return res.json({
+//         success: false,
+//         message: "Required parameters are missing",
+//         data: "eventId",
+//       });
+//     }
+//     // TODO: handle object id conversion
+//     const eventId = eventIdString;
+//     const deletionResult = await EventService.deleteEvent(eventId);
+//     if (deletionResult && deletionResult.deletedCount !== 0) {
+//       return res.status(200).json({
+//         message: "Event deleted",
+//         success: true,
+//         event: eventId,
+//       });
+//     } else {
+//       return res.status(404).json({
+//         message: "Event with given id not found",
+//         success: false,
+//         event: eventId,
+//       });
+//     }
+//   } catch (err) {
+//     return res.status(500).json({
+//       message: "Internal server error. Unable to delete the event.",
+//       success: false,
+//     });
+//   }
+// });
+
+router.delete("/event/:eventId", (req, res) => {
+  EventService.deleteEvent(req.params.eventId)
+    .then((deleteResult) => {
+      if (deleteResult.deletedCount) {
+        res.status(200).json({
+          message: "Event deleted",
+          success: true,
+        });
+      } else {
+        res.status(404).json({
+          message: "Event not found",
+          success: false,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Something went wrong",
         success: false,
-        message: "Required parameters are missing",
-        data: "eventId",
       });
-    }
-    // TODO: handle object id conversion
-    const eventId = eventIdString;
-    const deletionResult = await EventService.deleteEvent(eventId);
-    if (deletionResult && deletionResult.deletedCount !== 0) {
-      return res.status(200).json({
-        message: "Event deleted",
-        success: true,
-        event: eventId,
-      });
-    } else {
-      return res.status(404).json({
-        message: "Event with given id not found",
-        success: false,
-        event: eventId,
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({
-      message: "Internal server error. Unable to delete the event.",
-      success: false,
     });
-  }
 });
 
 /**

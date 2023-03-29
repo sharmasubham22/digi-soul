@@ -1,10 +1,11 @@
+const { eventNames } = require("../models/Event");
 const Event = require("../models/Event");
 
 const getEvent = (eventId) => {
   return Event.findById(eventId);
 };
 
-const getAllEvents = async () => {
+const getAllEvents = () => {
   return Event.find({});
 };
 
@@ -14,9 +15,8 @@ const createNewEvent = async (event) => {
   return newEvent;
 };
 
-const deleteEvent = async (eventId) => {
-  const delEvent = Event.deleteOne({ _id: eventId });
-  return delEvent;
+const deleteEvent = (eventId) => {
+  return Event.deleteOne({ _id: eventId });
 };
 
 const updateEvent = async (eventId, event) => {
