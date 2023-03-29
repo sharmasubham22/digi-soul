@@ -11,12 +11,12 @@ import Home from "../views/home/Home";
 import MyEvents from "../views/events/MyEvents";
 import AddUser from "../views/blogs/AddUser";
 import BlogList from "../views/blogs/BlogList";
-import ViewBlog from '../views/blogs/ViewBlog';
-import AddBlog from '../views/blogs/AddBlog';
-import SecondBlog from '../views/blogs/SecondBlog';
-import Login from '../views/Login';
-import SignUp from '../views/SignUp';
-import ForgotPassword from '../views/ForgotPassword';
+import ViewBlog from "../views/blogs/ViewBlog";
+import AddBlog from "../views/blogs/AddBlog";
+import SecondBlog from "../views/blogs/SecondBlog";
+import Login from "../views/Login";
+import SignUp from "../views/SignUp";
+import ForgotPassword from "../views/ForgotPassword";
 
 const routes = [
   {
@@ -101,15 +101,15 @@ const routes = [
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/signup",
-    element: <SignUp/>,
+    element: <SignUp />,
   },
   {
     path: "/forgotpassword",
-    element: <ForgotPassword/>,
+    element: <ForgotPassword />,
   },
 ];
 
