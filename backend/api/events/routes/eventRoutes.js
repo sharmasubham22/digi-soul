@@ -1,5 +1,5 @@
 const express = require("express");
-const EventUtil = require("../utils/eventUtils");
+const EventService = require("../services/eventServices");
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ const router = express.Router();
  */
 router.get("/", async (req, res) => {
   try {
-    const events = await EventUtil.getAllEvents();
+    const events = await EventService.getAllEvents();
     if (events.length > 0) {
       res.status(200).json({
         message: "Users retrieved",
@@ -50,7 +50,7 @@ router.get("/event/:eventId", async (req, res) => {
     }
     // TODO: handle object id conversion
     const eventId = eventIdString;
-    const event = EventUtil.getEvent(eventId);
+    const event = EventService.getEvent(eventId);
     if (event) {
       return res.status(200).json({
         success: true,
@@ -89,7 +89,7 @@ router.delete("/event/:eventId", async (req, res) => {
     }
     // TODO: handle object id conversion
     const eventId = eventIdString;
-    const deletionResult = await EventUtil.deleteEvent(eventId);
+    const deletionResult = await EventService.deleteEvent(eventId);
     if (deletionResult && deletionResult.deletedCount !== 0) {
       return res.status(200).json({
         message: "Event deleted",
@@ -104,7 +104,6 @@ router.delete("/event/:eventId", async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       message: "Internal server error. Unable to delete the event.",
       success: false,
@@ -138,7 +137,7 @@ router.put("/event/:eventId", async (req, res) => {
         data: "event",
       });
     }
-    const updatedResult = await EventUtil.updateEvent(eventId, event);
+    const updatedResult = await EventService.updateEvent(eventId, event);
     if (updateResult.matchedCount) {
       res.status(200).json({
         message: "Event updated",
@@ -151,7 +150,6 @@ router.put("/event/:eventId", async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       message: "Internal server error. Unable to delete the event.",
       success: false,
@@ -175,7 +173,7 @@ router.post("/", async (req, res) => {
         data: "event",
       });
     }
-    const createdEvent = await EventUtil.createNewEvent(event);
+    const createdEvent = await EventService.createNewEvent(event);
     if (createdEvent) {
       res.status(200).json({
         message: "Event created",
@@ -189,10 +187,11 @@ router.post("/", async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       message: "Internal server error. Unable to create event.",
       success: false,
     });
   }
 });
+
+module.exports = router
