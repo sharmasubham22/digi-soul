@@ -38,37 +38,61 @@ router.get("/", async (req, res) => {
  * @params request, response
  * @return event
  */
-router.get("/event/:eventId", async (req, res) => {
-  try {
-    const eventIdString = req.params.eventId;
-    if (!eventIdString) {
-      return res.json({
+// router.get("/event/:eventId", async (req, res) => {
+//   try {
+//     const eventIdString = req.params.eventId;
+//     if (!eventIdString) {
+//       return res.json({
+//         success: false,
+//         message: "Required parameters are missing",
+//         data: "eventId",
+//       });
+//     }
+//     // TODO: handle object id conversion
+//     const eventId = eventIdString;
+//     const event = EventService.getEvent(eventId);
+//     if (event) {
+//       return res.status(200).json({
+//         success: true,
+//         message: "Event fetched",
+//         event: event,
+//       });
+//     } else {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Event with given id not found",
+//       });
+//     }
+//   } catch (err) {
+//     res.status(500).json({
+//       message: err.message || "Internal server error.",
+//       success: false,
+//     });
+//   }
+// });
+
+router.get("/event/:eventId", (req, res) => {
+  EventService.getEvent(req.params.eventId)
+    .then((event) => {
+      if (event) {
+        return res.status(200).json({
+          success: true,
+          message: "Event fetched",
+          event: event,
+        });
+      } else {
+        return res.status(404).json({
+          success: false,
+          message: "Event with given id not found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Something went wrong",
         success: false,
-        message: "Required parameters are missing",
-        data: "eventId",
       });
-    }
-    // TODO: handle object id conversion
-    const eventId = eventIdString;
-    const event = EventService.getEvent(eventId);
-    if (event) {
-      return res.status(200).json({
-        success: true,
-        message: "Event fetched",
-        event: event,
-      });
-    } else {
-      return res.status(404).json({
-        success: false,
-        message: "Event with given id not found",
-      });
-    }
-  } catch (err) {
-    res.status(500).json({
-      message: err.message || "Internal server error.",
-      success: false,
     });
-  }
 });
 
 /**
@@ -165,14 +189,14 @@ router.put("/event/:eventId", async (req, res) => {
  */
 router.post("/", async (req, res) => {
   try {
-    const event = req.body.event;
-    if (!event) {
-      return res.json({
-        success: false,
-        message: "Required parameters are missing",
-        data: "event",
-      });
-    }
+    const event = req.body;
+    // if (!event) {
+    //   return res.json({
+    //     success: false,
+    //     message: "Required parameters are missing",
+    //     data: "event",
+    //   });
+    // }
     const createdEvent = await EventService.createNewEvent(event);
     if (createdEvent) {
       res.status(200).json({
@@ -194,4 +218,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports = router
+module.exports = router;

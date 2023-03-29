@@ -1,8 +1,7 @@
 const Event = require("../models/Event");
 
-const getEvent = async (eventId) => {
-  const fetchedEvent = await Event.findById(eventId).exec()
-  return fetchedEvent;
+const getEvent = (eventId) => {
+  return Event.findById(eventId);
 };
 
 const getAllEvents = async () => {
@@ -35,5 +34,5 @@ module.exports = {
   getAllEvents,
   createNewEvent,
   updateEvent,
-  deleteEvent
-}
+  deleteEvent,
+};
