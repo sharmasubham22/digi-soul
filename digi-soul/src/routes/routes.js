@@ -11,12 +11,13 @@ import Home from "../views/home/Home";
 import MyEvents from "../views/events/MyEvents";
 import AddUser from "../views/blogs/AddUser";
 import BlogList from "../views/blogs/BlogList";
-import ViewBlog from "../views/blogs/ViewBlog";
-import AddBlog from "../views/blogs/AddBlog";
-import SecondBlog from "../views/blogs/SecondBlog";
-import Login from "../views/Login";
-import SignUp from "../views/SignUp";
-import ForgotPassword from "../views/ForgotPassword";
+import ViewBlog from '../views/blogs/ViewBlog';
+import AddBlog from '../views/blogs/AddBlog';
+import SecondBlog from '../views/blogs/SecondBlog';
+import Login from '../views/Login';
+import SignUp from '../views/SignUp';
+import ForgotPassword from '../views/ForgotPassword';
+import ResetPassword from "../views/ResetPassword";
 
 const routes = [
   {
@@ -111,6 +112,10 @@ const routes = [
     path: "/forgotpassword",
     element: <ForgotPassword />,
   },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword/>
+  }
 ];
 
 export default routes;

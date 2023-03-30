@@ -5,30 +5,26 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockResetOutlinedIcon from "@mui/icons-material/LockResetOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function ResetPassword() {
+  const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
-    firstName: {
-      value: "",
-      isError: false,
-      errorMessage: "Only alphabets are allowed",
-    },
-    lastName: {
-      value: "",
-      isError: false,
-      errorMessage: "Only alphabets are allowed",
-    },
     email: {
       value: "",
       isError: false,
-      errorMessage: "Invalid email",
+      errorMessage: "Incorrect email format",
+    },
+    otp: {
+      value: "",
+      isError: false,
+      errorMessage: "Incorrect OTP",
     },
     password: {
       value: "",
@@ -57,36 +53,12 @@ export default function SignUp() {
 
   function validate(event) {
     var isValidationSuccess = true;
-
-    var regexLetters = /^[A-Za-z]+$/;
+    var regexPassword = /(?=.{8,})./;
     var regexEmail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    var regexPassword = /(?=.{8,})./;
-
-    if (!regexLetters.test(formData.firstName.value)) {
-        isValidationSuccess = false;
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        firstName: {
-          ...formData.firstName,
-          isError: true,
-        },
-      }));
-    }
-
-    if (!regexLetters.test(formData.lastName.value)) {
-        isValidationSuccess = false;
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        lastName: {
-          ...formData.lastName,
-          isError: true,
-        },
-      }));
-    }
 
     if (!regexEmail.test(formData.email.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         email: {
@@ -96,10 +68,22 @@ export default function SignUp() {
       }));
     }
 
+    // TODO: OTP validation
+    if (formData.otp.value === "") {
+      isValidationSuccess = false;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        otp: {
+          ...formData.otp,
+          isError: true,
+        },
+      }));
+    }
+
     // TODO: fix password validation
     //if (!regexPassword.test(formData.password.value)) {
     if (!regexPassword.test(formData.password.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         password: {
@@ -110,9 +94,9 @@ export default function SignUp() {
     }
 
     if (formData.password.value !== formData.confirmPassword.value) {
-        console.log(formData.password.value)
-        console.log(formData.confirmPassword.value)
-        isValidationSuccess = false;
+      console.log(formData.password.value);
+      console.log(formData.confirmPassword.value);
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         confirmPassword: {
@@ -127,29 +111,16 @@ export default function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-      if (validate() && formData.password.isError === false &&
-          formData.confirmPassword.isError === false &&
-          formData.firstName.isError === false &&
-          formData.lastName.isError === false &&
-          formData.email.isError === false){
-            const params = {'firstName': formData.firstName.value, 
-                            'lastName': formData.lastName.value,
-                            'email': formData.email.value,
-                            'password': formData.password.value};
-            axios.post("http://localhost:3000/adduser", params).then((resp) => {
-              if (resp.data.success === true){
-                window.location.href = "/"
-                localStorage.setItem('login', 'true');
-              }
-              else{
-                alert(resp.data.message);
-              }
-            }).catch((err) => {
-              alert(err.response.data.message);
-            })
-          }
-  }
 
+    if (
+      validate() &&
+      formData.email.isError &&
+      formData.password.isError === false &&
+      formData.otp.isError === false
+    ) {
+      navigate("/login");
+    }
+  }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -163,10 +134,10 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+            <LockResetOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Forgot Password?
           </Typography>
           <Box
             component="form"
@@ -177,48 +148,32 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  value={formData.firstName.value}
+                  required
+                  fullWidth
+                  name="Registered Email"
+                  value={formData.password.value}
                   onChange={handleChange}
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  helperText={
-                    formData.firstName.isError &&
-                    formData.firstName.errorMessage
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  value={formData.lastName.value}
-                  onChange={handleChange}
-                  helperText={
-                    formData.lastName.isError && formData.lastName.errorMessage
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
+                  label="Registered Email"
                   id="email"
-                  label="Email Address"
-                  name="email"
-                  value={formData.email.value}
-                  onChange={handleChange}
                   helperText={
                     formData.email.isError && formData.email.errorMessage
                   }
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="otp"
+                  label="Enter OTP"
+                  name="otp"
+                  value={formData.otp.value}
+                  onChange={handleChange}
+                  helperText={formData.otp.isError && formData.otp.errorMessage}
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -226,7 +181,7 @@ export default function SignUp() {
                   name="password"
                   value={formData.password.value}
                   onChange={handleChange}
-                  label="Password"
+                  label="New Password"
                   type="password"
                   id="password"
                   helperText={
@@ -234,6 +189,7 @@ export default function SignUp() {
                   }
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -257,7 +213,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Change Password
             </Button>
           </Box>
         </Box>
