@@ -39,6 +39,36 @@ router.get("/", (req, res) => {
  * @params request, response
  * @return event
  */
+router.get("/event/:eventId", (req, res) => {
+  EventService.getEvent(req.params.eventId)
+    .then((event) => {
+      if (event) {
+        return res.status(200).json({
+          success: true,
+          message: "Event fetched",
+          event: event,
+        });
+      } else {
+        return res.status(404).json({
+          success: false,
+          message: "Event with given id not found",
+        });
+      }
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        success: false,
+        message: "Something went wrong",
+      });
+    });
+});
+
+/**
+ * @author Amanjot Singh
+ * @description Delete event with given id
+ * @params request, response
+ * @return result
+ */
 router.delete("/event/:eventId", (req, res) => {
   EventService.deleteEvent(req.params.eventId)
     .then((deleteResult) => {
