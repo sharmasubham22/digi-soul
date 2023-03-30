@@ -5,7 +5,7 @@ const app = express();
 var cors = require('cors')
 app.use(cors())
 
-const route = require('./api/routes/routes');
+const route = require('./api/user_details/routes/routes');
 const mongoURL = "mongodb+srv://digisoul:dbuser123@ds-cluster.pnswsy5.mongodb.net/web15"
 mongoose.connect(mongoURL, {useNewUrlParser: true}).then(() => {
     console.log("MongoDB connected");

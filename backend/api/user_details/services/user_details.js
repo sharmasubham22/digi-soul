@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 
-var User = require('../model/user_details');
+var User = require('../models/user_details');
 
 
 const addUser = async (data) => {
