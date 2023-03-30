@@ -11,12 +11,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "@mui/material";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function Login(){
-  const navigate = useNavigate();
     const [formData, setFormData] = React.useState({
         email: {
           value: "",
@@ -88,11 +86,13 @@ export default function Login(){
           alert(err.response.data.message);
         });
           if (validate() && formData.password.isError === false &&
-              formData.email.isError === false){
-                navigate("/", {
-                    state: formData
-                });
+              formData.email.isError === false && db_resp.success){
+                localStorage.setItem("login", 'true')
+                window.location.href = "/"
               }
+            else{
+              alert("login failed");
+            }
       }
 
       
