@@ -17,6 +17,7 @@ import SecondBlog from '../views/blogs/SecondBlog';
 import Login from '../views/Login';
 import SignUp from '../views/SignUp';
 import ForgotPassword from '../views/ForgotPassword';
+import Support from "../views/support/Support";
 
 const routes = [
   {
@@ -97,7 +98,7 @@ const routes = [
   {
     name: "Support",
     path: "/support",
-    element: <h1>Support</h1>,
+    element: <Support/>,
   },
   {
     path: "/login",
