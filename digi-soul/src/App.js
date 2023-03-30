@@ -9,9 +9,9 @@ function App() {
 
   return (
       <Container>
-        <NavBar />
-        <RouterProvider router={router} />
-        <Footer />
+          <NavBar />
+          <RouterProvider router={router} />
+          <Footer />
       </Container>
   );
 }

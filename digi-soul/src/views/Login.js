@@ -9,13 +9,14 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function Login(){
-    const navigate = useNavigate();
+  const navigate = useNavigate();
     const [formData, setFormData] = React.useState({
         email: {
           value: "",
@@ -76,9 +77,16 @@ export default function Login(){
         return isValidationSuccess;
       }
     
-      function handleSubmit(event) {
+      async function handleSubmit(event) {
         event.preventDefault();
-    
+        const params = {'email': formData.email.value, 'password': formData.password.value};
+        let db_resp;
+        await axios.post('http://localhost:3000/getuser', params).then((resp)=>{
+          db_resp = resp.data;
+          console.log(resp.status, resp.data);
+        }).catch((err) => {
+          alert(err.response.data.message);
+        });
           if (validate() && formData.password.isError === false &&
               formData.email.isError === false){
                 navigate("/", {
