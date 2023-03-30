@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         res.status(200).json({
           message: "Events retrieved",
           success: true,
-          users: events,
+          events: events,
         });
       } else {
         res.status(404).json({
@@ -77,7 +77,7 @@ router.put("/event/:eventId", (req, res) => {
       console.log(updateResult);
       if (updateResult.matchedCount) {
         res.status(200).json({
-          message: "User updated",
+          message: "Event updated",
           success: true,
         });
       } else {
@@ -119,7 +119,7 @@ router.post("/", (req, res) => {
       });
   } else {
     res.status(500).json({
-      message: "Invalid Input - Unable to add user",
+      message: "Invalid Input - Unable to add event",
       success: false,
     });
   }
