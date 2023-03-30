@@ -18,6 +18,7 @@ import Login from '../views/Login';
 import SignUp from '../views/SignUp';
 import ForgotPassword from '../views/ForgotPassword';
 import Support from "../views/support/Support";
+import ResetPassword from "../views/ResetPassword";
 
 const routes = [
   {
@@ -102,16 +103,20 @@ const routes = [
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/signup",
-    element: <SignUp/>,
+    element: <SignUp />,
   },
   {
     path: "/forgotpassword",
-    element: <ForgotPassword/>,
+    element: <ForgotPassword />,
   },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword/>
+  }
 ];
 
 export default routes;
