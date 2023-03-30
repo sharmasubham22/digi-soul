@@ -36,6 +36,7 @@ const getUser = async (data) => {
         let user;
         await User.collection.findOne({'email': data.email}).then((_user) => {
             user = _user;
+            console.log(user);
         })
 
         if (user != null &&  data.password === user.password) {
