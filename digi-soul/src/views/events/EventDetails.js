@@ -12,13 +12,11 @@ import { eventsApi } from "./services/events-api";
 
 function EventDetails() {
   const { id } = useParams();
-  console.log(id);
   const [currentEvent, setCurrentEvent] = React.useState([]);
   React.useEffect(() => {
     eventsApi
       .getEvent(id)
       .then((res) => {
-        console.log(res);
         setCurrentEvent(() => res?.data?.event || {});
       })
       .catch((err) => {
