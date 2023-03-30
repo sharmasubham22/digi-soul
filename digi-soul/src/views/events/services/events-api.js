@@ -21,9 +21,9 @@ const updateEvent = (eventId, event) => {
 };
 
 export const eventsApi = {
-    getAllEvents,
-    getEvent,
-    updateEvent,
-    removeEvent,
-    createEvent
-}
+  getAllEvents,
+  getEvent,
+  updateEvent,
+  removeEvent,
+  createEvent,
+};

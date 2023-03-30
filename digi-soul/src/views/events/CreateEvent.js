@@ -17,22 +17,22 @@ const theme = createTheme();
 
 function CreateEvent() {
   const [formData, setFormData] = React.useState({
-    eventTitle: {
+    name: {
       value: "",
       isError: false,
       errorMessage: "Minimum input size 5",
     },
-    shortDetail: {
+    brief: {
       value: "",
       isError: false,
       errorMessage: "Minimum input size 25",
     },
-    thumbnail: {
+    imageURL: {
       value: "",
       isError: false,
       errorMessage: "Upload valid image",
     },
-    longDetail: {
+    detail: {
       value: "",
       isError: false,
       errorMessage: "",
@@ -64,23 +64,23 @@ function CreateEvent() {
     var regexTitle = /(?=.{5,})./;
     var regexDescription = /(?=.{25,})./;
 
-    if (!regexTitle.test(formData.eventTitle.value)) {
+    if (!regexTitle.test(formData.name.value)) {
       isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
-        eventTitle: {
-          ...formData.eventTitle,
+        name: {
+          ...formData.name,
           isError: true,
         },
       }));
     }
 
-    if (!regexDescription.test(formData.shortDetail.value)) {
+    if (!regexDescription.test(formData.brief.value)) {
       isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
-        shortDetail: {
-          ...formData.shortDetail,
+        brief: {
+          ...formData.brief,
           isError: true,
         },
       }));
@@ -123,16 +123,15 @@ function CreateEvent() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  name="eventTitle"
-                  value={formData.eventTitle.value}
+                  name="name"
+                  value={formData.name.value}
                   onChange={handleChange}
                   required
                   fullWidth
-                  id="eventTitle"
+                  id="name"
                   label="Event Title"
                   helperText={
-                    formData.eventTitle.isError &&
-                    formData.eventTitle.errorMessage
+                    formData.name.isError && formData.name.errorMessage
                   }
                 />
               </Grid>
@@ -140,14 +139,13 @@ function CreateEvent() {
                 <TextField
                   required
                   fullWidth
-                  id="shortDetail"
+                  id="brief"
                   label="Event Description"
-                  name="shortDetail"
-                  value={formData.shortDetail.value}
+                  name="brief"
+                  value={formData.brief.value}
                   onChange={handleChange}
                   helperText={
-                    formData.shortDetail.isError &&
-                    formData.shortDetail.errorMessage
+                    formData.brief.isError && formData.brief.errorMessage
                   }
                 />
               </Grid>
@@ -169,15 +167,14 @@ function CreateEvent() {
                   required
                   multiline
                   style={{ width: "100%" }}
-                  name="longDetail"
-                  value={formData.longDetail.value}
+                  name="detail"
+                  value={formData.detail.value}
                   onChange={handleChange}
                   placeholder="Detailed Description"
-                  id="longDetail"
+                  id="detail"
                   minRows={10}
                   helperText={
-                    formData.longDetail.isError &&
-                    formData.longDetail.errorMessage
+                    formData.detail.isError && formData.detail.errorMessage
                   }
                 />
               </Grid>
