@@ -19,14 +19,10 @@ const deleteEvent = (eventId) => {
   return Event.deleteOne({ _id: eventId });
 };
 
-const updateEvent = async (eventId, event) => {
-  const updatedEvent = Event.updateOne(
-    { _id: eventId },
-    { upsert: true },
-    { $set: event }
-  );
-  return updatedEvent;
+const updateEvent = (eventId, event) => {
+  return Event.updateOne({ _id: eventId }, event);
 };
+// };
 
 module.exports = {
   getEvent,

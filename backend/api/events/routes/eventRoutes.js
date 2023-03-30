@@ -188,44 +188,71 @@ router.delete("/event/:eventId", (req, res) => {
  * @params request, response
  * @return result
  */
-router.put("/event/:eventId", async (req, res) => {
-  try {
-    const eventIdString = req.params.eventId;
-    if (!eventIdString) {
-      return res.json({
+// router.put("/event/:eventId", async (req, res) => {
+//   try {
+//     const eventIdString = req.params.eventId;
+//     if (!eventIdString) {
+//       return res.json({
+//         success: false,
+//         message: "Required parameters are missing",
+//         data: "eventId",
+//       });
+//     }
+//     // TODO: handle object id conversion
+//     const eventId = eventIdString;
+//     const event = req.body.event;
+//     if (!event) {
+//       return res.json({
+//         success: false,
+//         message: "Required parameters are missing",
+//         data: "event",
+//       });
+//     }
+//     const updatedResult = await EventService.updateEvent(eventId, event);
+//     if (updatedResult.matchedCount) {
+//       res.status(200).json({
+//         message: "Event updated",
+//         success: true,
+//       });
+//     } else {
+//       res.status(404).json({
+//         message: "Event not found",
+//         success: false,
+//       });
+//     }
+//   } catch (err) {
+//     return res.status(500).json({
+//       message: "Internal server error. Unable to delete the event.",
+//       success: false,
+//     });
+//   }
+// });
+
+router.put("/event/:eventId", (req, res) => {
+  const eventId = req.params.eventId;
+  const event = req.body;
+  console.log(eventId);
+  EventService.updateEvent(eventId, event)
+    .then((updateResult) => {
+      console.log(updateResult);
+      if (updateResult.matchedCount) {
+        res.status(200).json({
+          message: "User updated",
+          success: true,
+        });
+      } else {
+        res.status(404).json({
+          message: "Event not found",
+          success: false,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Something went wrong",
         success: false,
-        message: "Required parameters are missing",
-        data: "eventId",
       });
-    }
-    // TODO: handle object id conversion
-    const eventId = eventIdString;
-    const event = req.body.event;
-    if (!event) {
-      return res.json({
-        success: false,
-        message: "Required parameters are missing",
-        data: "event",
-      });
-    }
-    const updatedResult = await EventService.updateEvent(eventId, event);
-    if (updatedResult.matchedCount) {
-      res.status(200).json({
-        message: "Event updated",
-        success: true,
-      });
-    } else {
-      res.status(404).json({
-        message: "Event not found",
-        success: false,
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({
-      message: "Internal server error. Unable to delete the event.",
-      success: false,
     });
-  }
 });
 
 /**
