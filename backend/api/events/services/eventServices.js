@@ -11,8 +11,7 @@ const getAllEvents = () => {
 
 const createNewEvent = async (event) => {
   const newEvent = new Event(event);
-  await newEvent.save();
-  return newEvent;
+  return newEvent.save();
 };
 
 const deleteEvent = (eventId) => {
@@ -22,7 +21,6 @@ const deleteEvent = (eventId) => {
 const updateEvent = (eventId, event) => {
   return Event.updateOne({ _id: eventId }, event);
 };
-// };
 
 module.exports = {
   getEvent,
