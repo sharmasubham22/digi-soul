@@ -17,6 +17,7 @@ import SecondBlog from '../views/blogs/SecondBlog';
 import Login from '../views/Login';
 import SignUp from '../views/SignUp';
 import ForgotPassword from '../views/ForgotPassword';
+import ResetPassword from "../views/ResetPassword";
 
 const routes = [
   {
@@ -111,6 +112,10 @@ const routes = [
     path: "/forgotpassword",
     element: <ForgotPassword/>,
   },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword/>
+  }
 ];
 
 export default routes;
