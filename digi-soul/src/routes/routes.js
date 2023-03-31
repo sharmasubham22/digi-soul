@@ -19,6 +19,7 @@ import SignUp from '../views/SignUp';
 import ForgotPassword from '../views/ForgotPassword';
 import Support from "../views/support/Support";
 import ResetPassword from "../views/ResetPassword";
+import AddProduct from "../views/products/AddProduct";
 
 const routes = [
   {
@@ -116,6 +117,10 @@ const routes = [
   {
     path: "/resetpassword",
     element: <ResetPassword/>
+  },
+   {
+    path: "/addproduct",
+    element: <AddProduct/>
   }
 ];
 

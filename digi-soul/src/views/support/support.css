@@ -53,12 +53,12 @@ padding-top: 7%;
     font-size: large;
 }
 
-input:focus{
+.form-input:focus{
     outline: none;
     border: 1px solid #03989E;
 }
 
-textarea:focus{
+.form-message:focus{
     outline: none;
     border: 1px solid #03989E;
 }

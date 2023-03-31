@@ -9,17 +9,26 @@ import Paper from "@mui/material/Paper";
 import productsData from "../data/products.json";
 import { useParams } from "react-router-dom";
 import '../views/products/productDetails.css';
+import { productsApi } from "../views/products/services/products-api";
 
 export default function SpecsTable() {
-    
-    const { id } = useParams();
-    const currentProduct = productsData
-      .filter((event) => event.productId === parseInt(id))
-      .at(0);
 
       function createData(specification, provided) {
         return { specification, provided };
       }
+
+        const { id } = useParams();
+        const [currentProduct, setCurrentProduct] = React.useState([]);
+        React.useEffect(() => {
+          productsApi
+            .getProduct(id)
+            .then((res) => {
+              setCurrentProduct(() => res?.data?.product || {});
+            })
+            .catch((err) => {
+              console.log("While fetching the product specifications-->", err);
+            });
+        }, []);
 
       const rows = [
         createData("OS", currentProduct.productOS),
