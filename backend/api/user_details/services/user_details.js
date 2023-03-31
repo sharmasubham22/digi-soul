@@ -28,7 +28,23 @@ const addUser = async (data) => {
 }
 
 const modifyUser = async (data) => {
-    // TODO: Modify user in DB
+    console.log(data, 'controller')
+    if (data?.email && data?.password){
+        let resp;
+        await User.collection.findOneAndUpdate({'email': data.email}, {$set: {password: data.password}}).then((_user) => {
+            if (_user == null){
+                resp = {'success': false, 'message': 'Email not found.'}
+            }
+            else{
+                resp = {'success': true, 'message': 'Password reset'}
+            }
+        }).catch((err) => {
+            resp = {'success': false, 'message': 'MongoDB error'};
+        })
+        return resp
+    }else{
+        return {'success': false, 'message': 'Missing params'}
+    }
 }
 
 const getUser = async (data) => {
@@ -51,4 +67,23 @@ const getUser = async (data) => {
     }
 }
 
-module.exports = {addUser, getUser};
+const findUser = async (data) => {
+    if (data?.email){
+        let user;
+        await User.collection.findOne({'email': data.email}).then((_user) => {
+            user = _user
+        })
+
+        if (user != null){
+            return {'success': true, 'message': 'User found'}
+        }
+        else{
+            return {'success': true, 'message': 'User not found'}
+        }
+    }
+    else{
+        return {'success': false, 'message': 'Missing param email'}
+    }
+}
+
+module.exports = {addUser, getUser, modifyUser, findUser};

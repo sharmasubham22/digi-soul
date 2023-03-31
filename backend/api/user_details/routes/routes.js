@@ -29,7 +29,30 @@ router.post("/getuser", async (req, res) => {
     }
 })
 
-router.get("/otp", async (req, res) => {
+router.post("/finduser", async (req, res) => {
+    const db_resp = await user_controller.findUser(req.body);
+
+    if (db_resp.success){
+        res.status(200).json(db_resp)
+    }
+    else{
+        res.status(400).json(db_resp)
+    }
+})
+
+router.post("/updateuser", async (req, res) => {
+    const db_resp = await user_controller.modifyUser(req.body)
+    console.log(db_resp, "/updateuser");
+
+    if(db_resp.success){
+        res.status(200).json(db_resp)
+    }
+    else{
+        res.status(400).json(db_resp)
+    }
+})
+
+router.post("/otp", async (req, res) => {
     const to_email = req.body.email;
     const otp = Math.floor(100000 + Math.random() * 900000);
     const transporter = nodemailer.createTransport({
@@ -39,7 +62,8 @@ router.get("/otp", async (req, res) => {
           pass: 'emzpnspiovlavmud',
         },
       });
-    
+    console.log('otp req recieved');
+    console.log(to_email);
     const mailOptions = {
     from: 'cryptoproject74@gmail.com',
     to: to_email,
@@ -49,7 +73,7 @@ router.get("/otp", async (req, res) => {
     transporter.sendMail(mailOptions).then((data) => {
         res.status(200).json({'success': true, 'otp': otp});
     }).catch((err) => {
-        res.status(400).json({'success': false, 'message': 'Couldn\'t send OTP to the registered email.'})
+        res.status(400).json({'success': false, 'message': 'Couldn\'t send OTP to the registered email.', 'error': err})
     });
     
 });
