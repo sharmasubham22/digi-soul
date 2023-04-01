@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFilePicker } from "use-file-picker";
 import BasicDatePicker from "../../components/BasicDatePicker";
 import { useNavigate } from "react-router-dom";
+import { eventsApi } from "./services/events-api";
 
 const theme = createTheme();
 
@@ -38,6 +39,8 @@ function CreateEvent() {
       errorMessage: "",
     },
   });
+
+  const [eventDate, setEventDate] = React.useState(Date.now());
 
   const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
     readAs: "DataURL",
@@ -92,7 +95,26 @@ function CreateEvent() {
   function handleSubmit(event) {
     event.preventDefault();
     if (validate()) {
-      navigate("/events/all");
+      eventsApi
+        .createEvent({
+          name: formData.name.value,
+          brief: formData.brief.value,
+          detail: formData.detail.value,
+          date: eventDate,
+        })
+        .then((res) => {
+          if (res.data.success) {
+            console.log("Event Created :)", res.data);
+            res.data?.event?._doc?._id
+              ? navigate(`/event/${res.data.event._doc._id}`)
+              : navigate(`/events/all`);
+            // TODO: Add success toast
+          }
+        })
+        .catch((err) => {
+          console.log("Cannot create event due to the error-->,", err);
+          // TODO: Show err message
+        });
     }
   }
 
@@ -160,7 +182,7 @@ function CreateEvent() {
                 </Button>
               </Grid>
               <Grid item xs={6} height="100%">
-                <BasicDatePicker />
+                <BasicDatePicker value={eventDate} setValue={setEventDate}/>
               </Grid>
               <Grid item xs={12}>
                 <TextField

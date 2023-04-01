@@ -109,6 +109,7 @@ router.put("/event/:eventId", (req, res) => {
         res.status(200).json({
           message: "Event updated",
           success: true,
+          event: event,
         });
       } else {
         res.status(404).json({
@@ -132,13 +133,15 @@ router.put("/event/:eventId", (req, res) => {
  * @return event
  */
 router.post("/", (req, res) => {
-  const event = req.body;
+  const event = req.body.event;
+  console.log("create event-->", event)
   if (event) {
     EventService.createNewEvent(event)
       .then((newEvent) => {
         res.status(200).json({
           message: "Event added",
           success: true,
+          event: { ...newEvent },
         });
       })
       .catch((err) => {
