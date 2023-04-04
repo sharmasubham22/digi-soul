@@ -17,6 +17,14 @@ import { eventsApi } from "./services/events-api";
 const theme = createTheme();
 
 function CreateEvent() {
+  const [eventDate, setEventDate] = React.useState(Date.now());
+
+  const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
+    readAs: "DataURL",
+    accept: "image/*",
+    limitFilesConfig: { max: 1 },
+  });
+
   const [formData, setFormData] = React.useState({
     name: {
       value: "",
@@ -29,7 +37,7 @@ function CreateEvent() {
       errorMessage: "Minimum input size 25",
     },
     imageURL: {
-      value: "",
+      value: filesContent[0]?.content || "",
       isError: false,
       errorMessage: "Upload valid image",
     },
@@ -38,14 +46,6 @@ function CreateEvent() {
       isError: false,
       errorMessage: "",
     },
-  });
-
-  const [eventDate, setEventDate] = React.useState(Date.now());
-
-  const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
-    readAs: "DataURL",
-    accept: "image/*",
-    limitFilesConfig: { max: 1 },
   });
 
   const navigate = useNavigate();
@@ -182,7 +182,7 @@ function CreateEvent() {
                 </Button>
               </Grid>
               <Grid item xs={6} height="100%">
-                <BasicDatePicker value={eventDate} setValue={setEventDate}/>
+                <BasicDatePicker value={eventDate} setValue={setEventDate} />
               </Grid>
               <Grid item xs={12}>
                 <TextField

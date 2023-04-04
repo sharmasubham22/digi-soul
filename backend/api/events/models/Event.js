@@ -8,7 +8,10 @@ const event = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  imageURL: String,
+  imageURL: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 const eventSchema = mongoose.model("Events", event);
