@@ -18,19 +18,9 @@ const createNewProduct = async (product) => {
   return newProduct.save();
 };
 
-const deleteProduct = (productId) => {
-  return Product.deleteOne({ _id: productId });
-};
-
-const updateProduct = (productId, product) => {
-  return product.updateOne({ _id: productId }, product);
-};
-
 module.exports = {
   getProduct,
   getAllProducts,
   getProductsByCategory,
   createNewProduct,
-  updateProduct,
-  deleteProduct,
 };
