@@ -8,6 +8,10 @@ const getProduct = (productId) => {
   return httpClient.get(`/products/product/${productId}`);
 };
 
+const getProductsByCategory = (category)=>{
+  return httpClient.get(`/products/product/category/${category}`);
+}
+
 const createProduct = (product) => {
   return httpClient.post("/products", { product });
 };
@@ -25,5 +29,6 @@ export const productsApi = {
     getProduct,
     updateProduct,
     removeProduct,
-    createProduct
+    createProduct,
+    getProductsByCategory
 }

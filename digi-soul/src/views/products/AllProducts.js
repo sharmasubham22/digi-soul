@@ -23,7 +23,7 @@ function AllProducts() {
   return (
     <Container sx={{ marginTop: "25px" }}>
       <CarouselComponent />
-      <Fab href="/addproduct" sx={{float:"right", mb:3}}><AddIcon/></Fab>
+      {/* <Fab href="/addproduct" sx={{float:"right", mb:3}}><AddIcon/></Fab> */}
       <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
         <ProductTabs />
       </Container>

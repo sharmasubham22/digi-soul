@@ -51,6 +51,30 @@ router.get("/product/:productId", (req, res) => {
     });
 });
 
+router.get("/product/category/:category", (req, res) => {
+  ProductService.getProductsByCategory(req.params.category)
+    .then((products) => {
+      if (products.length > 0) {
+        res.status(200).json({
+          message: "Products retrieved",
+          success: true,
+          products: products,
+        });
+      } else {
+        res.status(404).json({
+          message: "No Product found",
+          success: false,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message,
+        success: false,
+      });
+    });
+}); 
+
 router.delete("/product/:productId", (req, res) => {
   ProductService.deleteProduct(req.params.productId)
     .then((deleteResult) => {

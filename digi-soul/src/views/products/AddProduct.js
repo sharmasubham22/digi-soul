@@ -1,4 +1,4 @@
-import React from 'react'
+import {React} from 'react'
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -20,6 +20,7 @@ function AddProduct() {
         limitFilesConfig: { max: 1 },
       }
     );
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -46,17 +47,6 @@ function AddProduct() {
               />
             </Grid>
             <Grid item xs={12}>
-              {/* <TextField
-                required
-                fullWidth
-                id="p-price"
-                label="Product Price"
-                name="price"
-                startAdornment={
-                  <InputAdornment position="start">$</InputAdornment>
-                }
-              /> */}
-
               <OutlinedInput
                 fullWidth
                 id="outlined-adornment-amount"
@@ -77,15 +67,22 @@ function AddProduct() {
               </Button>
             </Grid>
             <Grid item xs={6} height="100%">
-              <Select fullWidth placeholder="Age">
+              <Select fullWidth placeholder="Category">
                 <MenuItem value="smartphone">SmartPhones</MenuItem>
                 <MenuItem value="laptop">Laptops</MenuItem>
                 <MenuItem value="camera">Cameras</MenuItem>
-                <MenuItem value="gaming console">Gaming Consoles</MenuItem>
+                <MenuItem value="gamingconsole">Gaming Consoles</MenuItem>
                 <MenuItem value="headphone">Headphones</MenuItem>
                 <MenuItem value="television">Televisions</MenuItem>
                 <MenuItem value="desktop">Desktops</MenuItem>
                 <MenuItem value="accessories">Accessories</MenuItem>
+              </Select>
+            </Grid>
+            <Grid item xs={12} height="100%">
+              <Select fullWidth placeholder="Seller">
+                <MenuItem value="amazon">Amazon</MenuItem>
+                <MenuItem value="bestbuy">Best Buy</MenuItem>
+                <MenuItem value="thesource">The Source</MenuItem>
               </Select>
             </Grid>
 
@@ -103,7 +100,6 @@ function AddProduct() {
             <Grid item xs={12}>
               <TextField
                 name="os"
-                
                 fullWidth
                 id="p-os"
                 placeholder="Operating Syatem"
@@ -112,7 +108,6 @@ function AddProduct() {
             <Grid item xs={12}>
               <TextField
                 name="storage"
-                
                 fullWidth
                 id="p-storage"
                 placeholder="Storage"
@@ -121,20 +116,13 @@ function AddProduct() {
             <Grid item xs={12}>
               <TextField
                 name="camera"
-              
                 fullWidth
                 id="p-camera"
                 placeholder="Camera specification"
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="ram"
-                
-                fullWidth
-                id="p-ram"
-                placeholder="RAM"
-              />
+              <TextField name="ram" fullWidth id="p-ram" placeholder="RAM" />
             </Grid>
             <Grid item xs={12}>
               <TextField

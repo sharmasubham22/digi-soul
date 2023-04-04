@@ -53,7 +53,7 @@ export default function ProductDetails() {
               component="div"
               sx={{ m: "auto" }}
             >
-              {currentProduct.productPrice}
+              ${currentProduct.productPrice}
             </Typography>
             <Button variant="contained">Buy</Button>
           </Box>
