@@ -23,7 +23,7 @@ export default function ProductCard(props) {
           {name}
         </Typography>
         <Typography variant="h7" color="text.secondary">
-          {price}
+          ${price}
         </Typography>
       </CardContent>
       <CardActions>
