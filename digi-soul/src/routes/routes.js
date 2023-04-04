@@ -5,7 +5,7 @@ import Reviews from "../views/reviews/Reviews";
 import ReviewDetails from "../views/reviews/ReviewDetails";
 import CreateEvent from "../views/events/CreateEvent";
 import AllProducts from "../views/products/AllProducts";
-import Smartphones from "../views/products/Smartphones";
+import ProductCategory from "../views/products/Category";
 import ProductDetails from "../views/products/ProductDetails";
 import Home from "../views/home/Home";
 import MyEvents from "../views/events/MyEvents";
@@ -17,7 +17,9 @@ import SecondBlog from '../views/blogs/SecondBlog';
 import Login from '../views/Login';
 import SignUp from '../views/SignUp';
 import ForgotPassword from '../views/ForgotPassword';
+import Support from "../views/support/Support";
 import ResetPassword from "../views/ResetPassword";
+import AddProduct from "../views/products/AddProduct";
 
 const routes = [
   {
@@ -32,7 +34,35 @@ const routes = [
   },
   {
     path: "/product/phones",
-    element: <Smartphones />,
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/laptop",
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/camera",
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/gamingconsole",
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/headphone",
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/television",
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/desktop",
+    element: <ProductCategory />,
+  },
+  {
+    path: "/product/accessories",
+    element: <ProductCategory />,
   },
   {
     path: "/product/:id",
@@ -98,7 +128,7 @@ const routes = [
   {
     name: "Support",
     path: "/support",
-    element: <h1>Support</h1>,
+    element: <Support />,
   },
   {
     path: "/login",
@@ -114,8 +144,12 @@ const routes = [
   },
   {
     path: "/resetpassword",
-    element: <ResetPassword/>
-  }
+    element: <ResetPassword />,
+  },
+  {
+    path: "/addproduct",
+    element: <AddProduct />,
+  },
 ];
 
 export default routes;
