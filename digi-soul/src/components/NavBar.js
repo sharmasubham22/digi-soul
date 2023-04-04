@@ -21,12 +21,26 @@ const settings = [
   { name: "My Events", path: "/events/myevents" },
   { name: "My Reviews", path: "" },
   { name: "My Blogs", path: "" },
-  { name: "Logout", path: "" },
 ];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [Login, setLogin] = React.useState(localStorage.getItem('login'));
+
+  React.useEffect(() => {
+    if (Login == null || Login === 'false'){
+      setLogin('false');
+      localStorage.setItem('login', 'false')
+      console.log("false called")
+    }
+    else if (Login === 'true' ){
+      localStorage.setItem('login', 'true');
+      setLogin('true');
+      console.log("true called")
+    }
+    console.log(`login value ${Login}`)
+  }, [Login])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -42,6 +56,79 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const LogoutHandle = () => {
+    localStorage.setItem('login', 'false')
+    setLogin('false');
+  }
+  const LoginSignUp = () => {
+    console.log(`login value in if-else ${Login}`)
+    console.log("Login called")
+    return (<Button
+      key="logout"
+      onClick={handleCloseNavMenu}
+      component="a"
+      href="/login"
+      sx={{ ml: 3, my: 2, color: "black", display: "block" }}
+    >
+      <Typography textAlign="center" fontWeight='500' fontSize='0.875rem' font-family={["Roboto", "Helvetica","Arial", "sans-serif"]}>Login/SignUp</Typography>
+    </Button>)
+  }
+
+  const userProfile = () => {
+    console.log(`login value in UP if-else ${Login}`)
+    console.log("Login called")
+    return (<Box sx={{ flexGrow: 0 }}>
+      <Tooltip title="Open settings">
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Avatar src="/broken-image.jpg" />
+        </IconButton>
+      </Tooltip>
+      <Menu
+        sx={{ mt: "45px" }}
+        id="menu-appbar"
+        anchorEl={anchorElUser}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={Boolean(anchorElUser)}
+        onClose={handleCloseUserMenu}
+      >
+        {settings.map((setting) => (
+          <MenuItem key={setting} onClick={handleCloseUserMenu}>
+            <Typography
+              id={setting.name}
+              textAlign="center"
+              component="a"
+              href={setting.path}
+              sx={{textDecoration:"none"}}
+              color="black"            >
+              {setting.name}
+            </Typography>
+          </MenuItem>
+        ))}
+        <MenuItem key={{ name: "Logout", path: "/login" }} onClick={handleCloseUserMenu}>
+            <Typography
+              id={"Logout"}
+              textAlign="center"
+              component="a"
+              href={"/login"}
+              sx={{textDecoration:"none"}}
+              color="black"
+              onClick={LogoutHandle}
+            >
+              {'Logout'}
+            </Typography>
+          </MenuItem>
+      </Menu>
+    </Box>)
+  }
 
   return (
     <AppBar
@@ -116,7 +203,7 @@ const NavBar = () => {
                     component="a"
                     href={route.path}
                   >
-                    <Typography textAlign="center">{route.name}</Typography>
+                    <Typography textAlign="center" >{route.name}</Typography>
                   </MenuItem>
                 ))}
             </Menu>
@@ -154,44 +241,7 @@ const NavBar = () => {
                 </Button>
               ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src="/broken-image.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    component="a"
-                    href="/events/myevents"
-                    sx={{textDecoration:"none"}}
-                    color="black"
-                  >
-                    {setting.name}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          { Login === 'false' ?  LoginSignUp() : userProfile()}
         </Toolbar>
       </Container>
     </AppBar>

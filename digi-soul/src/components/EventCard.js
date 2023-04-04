@@ -7,14 +7,14 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function EventCard(props) {
-  const { id, name, details, imgurl } = props;
+  const { id, name, brief, imageURL } = props;
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="Event Thumbnail"
         height="160"
-        image={imgurl}
+        image={imageURL}
         sx={{objectFit: "contain"}}
       />
       <CardContent>
@@ -22,7 +22,7 @@ export default function EventCard(props) {
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {details}
+          {brief}
         </Typography>
       </CardContent>
       <CardActions>

@@ -9,12 +9,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     firstName: {
       value: "",
@@ -65,7 +64,7 @@ export default function SignUp() {
     var regexPassword = /(?=.{8,})./;
 
     if (!regexLetters.test(formData.firstName.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         firstName: {
@@ -76,7 +75,7 @@ export default function SignUp() {
     }
 
     if (!regexLetters.test(formData.lastName.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         lastName: {
@@ -87,7 +86,7 @@ export default function SignUp() {
     }
 
     if (!regexEmail.test(formData.email.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         email: {
@@ -100,7 +99,7 @@ export default function SignUp() {
     // TODO: fix password validation
     //if (!regexPassword.test(formData.password.value)) {
     if (!regexPassword.test(formData.password.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         password: {
@@ -111,9 +110,9 @@ export default function SignUp() {
     }
 
     if (formData.password.value !== formData.confirmPassword.value) {
-        console.log(formData.password.value)
-        console.log(formData.confirmPassword.value)
-        isValidationSuccess = false;
+      console.log(formData.password.value)
+      console.log(formData.confirmPassword.value)
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         confirmPassword: {
@@ -128,16 +127,29 @@ export default function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
-      if (validate() && formData.password.isError === false &&
-          formData.confirmPassword.isError === false &&
-          formData.firstName.isError === false &&
-          formData.lastName.isError === false &&
-          formData.email.isError === false){
-            navigate("/welcome", {
-                state: formData
-            });
-          }
+    if (validate() && formData.password.isError === false &&
+      formData.confirmPassword.isError === false &&
+      formData.firstName.isError === false &&
+      formData.lastName.isError === false &&
+      formData.email.isError === false) {
+      const params = {
+        'firstName': formData.firstName.value,
+        'lastName': formData.lastName.value,
+        'email': formData.email.value,
+        'password': formData.password.value
+      };
+      axios.post("http://localhost:3002/api/user_details/adduser", params).then((resp) => {
+        if (resp.data.success === true) {
+          window.location.href = "/"
+          localStorage.setItem('login', 'true');
+        }
+        else {
+          alert(resp.data.message);
+        }
+      }).catch((err) => {
+        alert(err.response.data.message);
+      })
+    }
   }
 
   return (

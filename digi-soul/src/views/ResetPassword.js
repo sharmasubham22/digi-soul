@@ -13,9 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-export default function ForgotPassword() {
+export default function ResetPassword() {
   const navigate = useNavigate();
-  const [ShowBox, setShowBox] = React.useState(false);
   const [formData, setFormData] = React.useState({
     email: {
       value: "",
@@ -115,12 +114,11 @@ export default function ForgotPassword() {
 
     if (
       validate() &&
+      formData.email.isError &&
       formData.password.isError === false &&
       formData.otp.isError === false
     ) {
-      navigate("/login", {
-        state: formData,
-      });
+      navigate("/login");
     }
   }
   return (
@@ -150,14 +148,13 @@ export default function ForgotPassword() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  error = {formData.email.isError}
                   required
                   fullWidth
-                  id="email"
-                  label="Registered Email"
-                  name="email"
-                  value={formData.email.value}
+                  name="Registered Email"
+                  value={formData.password.value}
                   onChange={handleChange}
+                  label="Registered Email"
+                  id="email"
                   helperText={
                     formData.email.isError && formData.email.errorMessage
                   }
@@ -167,7 +164,19 @@ export default function ForgotPassword() {
               <Grid item xs={12}>
                 <TextField
                   required
-                  error = {formData.password.isError}
+                  fullWidth
+                  id="otp"
+                  label="Enter OTP"
+                  name="otp"
+                  value={formData.otp.value}
+                  onChange={handleChange}
+                  helperText={formData.otp.isError && formData.otp.errorMessage}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
                   fullWidth
                   name="password"
                   value={formData.password.value}
@@ -184,7 +193,6 @@ export default function ForgotPassword() {
               <Grid item xs={12}>
                 <TextField
                   required
-                  error = {formData.confirmPassword.isError}
                   fullWidth
                   name="confirmPassword"
                   value={formData.confirmPassword.value}
@@ -198,38 +206,15 @@ export default function ForgotPassword() {
                   }
                 />
               </Grid>
-
-              {ShowBox && <Grid item xs={12} id="otp-box">
-                <TextField
-                  error = {formData.otp.isError}
-                  required
-                  fullWidth
-                  id="otp"
-                  label="Enter OTP"
-                  name="otp"
-                  value={formData.otp.value}
-                  onChange={handleChange}
-                  helperText={formData.otp.isError && formData.otp.errorMessage}
-                />
-              </Grid> }
-
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3 }}
-            >
-              Send OTP
-            </Button>
-            { ShowBox && <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              // sx={{ mt: 3}}
+              sx={{ mt: 3, mb: 2 }}
             >
               Change Password
-            </Button> }
+            </Button>
           </Box>
         </Box>
       </Container>
