@@ -61,7 +61,7 @@ export default function SignUp() {
     var regexLetters = /^[A-Za-z]+$/;
     var regexEmail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    var regexPassword = '/(?=.{8,})./';
+    var regexPassword = /(?=.{8,})./;
 
     if (!regexLetters.test(formData.firstName.value)) {
       isValidationSuccess = false;
