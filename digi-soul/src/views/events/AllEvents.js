@@ -8,6 +8,20 @@ import { eventsApi } from "./services/events-api";
 
 function AllEvents() {
   const [eventsData, setEventsData] = React.useState([]);
+  const [Login, setLogin] = React.useState(localStorage.getItem("login"));
+
+  React.useEffect(() => {
+    if (Login == null || Login === "false") {
+      setLogin("false");
+      localStorage.setItem("login", "false");
+      console.log("false called");
+    } else if (Login === "true") {
+      localStorage.setItem("login", "true");
+      setLogin("true");
+      console.log("true called");
+    }
+    console.log(`login value ${Login}`);
+  }, [Login]);
   React.useEffect(() => {
     eventsApi
       .getAllEvents()
@@ -19,13 +33,25 @@ function AllEvents() {
       });
   }, []);
 
+  function handleCreate(event){
+    event.preventDefault();
+
+    if (Login === 'true'){
+      window.location.href = "/events/create"
+    }
+    else{
+      alert('Please login to create an event')
+      window.location.href = "/login"
+    }
+  }
+
   return (
     <Container sx={{ marginTop: "25px" }}>
       <Container maxWidth="l" sx={{ display: "flex", alignItems: "center" }}>
         <Button
           variant="contained"
           startIcon={<AddIcon />}
-          href="/events/create"
+          onClick={handleCreate}
         >
           Create
         </Button>

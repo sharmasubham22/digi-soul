@@ -1,5 +1,5 @@
 import { Button, Container, Grid } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import MyEventCard from "../../components/MyEventCard";
 // import eventsData from "../../data/events.json";
@@ -8,16 +8,23 @@ import UpdateEvent from "./UpdateEvent";
 
 function MyEvents() {
   const [eventsData, setEventsData] = React.useState([]);
+  const dataFetchedRef = useRef(false);
 
   React.useEffect(() => {
-    eventsApi
-      .getAllEvents()
-      .then((res) => {
-        setEventsData(() => res?.data?.events || []);
-      })
-      .catch((err) => {
-        console.log("While fetching events-->", err);
-      });
+    const eventIDs = ["6425bfbbff020e5a650712aa", "6425bfcdff020e5a65072867"];
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    eventIDs.map((id) => {
+      eventsApi
+        .getEvent(id)
+        .then((res) => {
+          setEventsData((prev) => [...prev, res?.data?.event || {}]);
+          console.log(eventsData);
+        })
+        .catch((err) => {
+          console.log("While fetching an event -->", err);
+        });
+    });
   }, []);
 
   function deleteEvent(id) {
