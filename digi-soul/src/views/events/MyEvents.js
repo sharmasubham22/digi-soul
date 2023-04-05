@@ -17,7 +17,7 @@ function MyEvents() {
     dataFetchedRef.current = true;
     // const eventIDs = ["6425bfbbff020e5a650712aa", "6425bfcdff020e5a65072867"];
     axios
-      .post("http://localhost:3002/api/user_details/fetchevents", {
+      .post("https://digi-soul.onrender.com/api/user_details/fetchevents", {
         email: "zxcv@dal.ca",
       })
       .then((res) => {

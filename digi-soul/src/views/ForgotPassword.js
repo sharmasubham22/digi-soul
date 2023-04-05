@@ -112,7 +112,7 @@ export default function ForgotPassword() {
       // });
       const user_params = {'email': formData.email.value}
       let user_found;
-      await axios.post("http://localhost:3002/api/user_details/finduser", user_params).then((resp) => {
+      await axios.post("https://digi-soul.onrender.com/api/user_details/finduser", user_params).then((resp) => {
         const status = resp.data.message
         if (status === 'User found'){
           user_found = true;
@@ -130,7 +130,7 @@ export default function ForgotPassword() {
       console.log(params);
       if (user_found) {
         await axios
-        .post("http://localhost:3002/api/user_details/otp", params)
+        .post("https://digi-soul.onrender.com/api/user_details/otp", params)
         .then((resp) => {
           if (resp.data.success) {
             setOTP(resp.data.otp);
@@ -167,7 +167,7 @@ export default function ForgotPassword() {
     }
     else if (parseInt(otp) === otp) {
       const params = {'email': formData.email.value, 'password': formData.password.value}
-      await axios.post('http://localhost:3002/api/user_details/updateuser', params)
+      await axios.post('https://digi-soul.onrender.com/api/user_details/updateuser', params)
       navigate("/login")
     }
   }

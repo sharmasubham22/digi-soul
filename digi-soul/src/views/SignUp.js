@@ -136,7 +136,7 @@ export default function SignUp() {
                             'lastName': formData.lastName.value,
                             'email': formData.email.value,
                             'password': formData.password.value};
-            axios.post("http://localhost:3002/api/user_details/adduser", params).then((resp) => {
+            axios.post("https://digi-soul.onrender.com/api/user_details/adduser", params).then((resp) => {
               if (resp.data.success === true){
                 window.location.href = "/"
                 localStorage.setItem('login', 'true');
