@@ -67,3 +67,14 @@ padding-top: 7%;
     border: 1px solid #03989E;
 }
 
+@media only screen and (max-width: 768px){
+     .grid-container{
+         width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* grid-template-rows: 2fr 5fr 2fr 2fr 2fr 2fr 1fr ; */
+        grid-template-areas: 'content1 content1'
+                             'content2 content2';
+                             
+}
+}
