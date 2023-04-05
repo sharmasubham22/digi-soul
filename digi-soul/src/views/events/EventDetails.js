@@ -7,13 +7,22 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
 import { useParams } from "react-router-dom";
-import eventsData from "../../data/events.json";
+// import eventsData from "../../data/events.json";
+import { eventsApi } from "./services/events-api";
 
 function EventDetails() {
   const { id } = useParams();
-  const currentEvent = eventsData
-    .filter((event) => event.eventId === parseInt(id))
-    .at(0);
+  const [currentEvent, setCurrentEvent] = React.useState([]);
+  React.useEffect(() => {
+    eventsApi
+      .getEvent(id)
+      .then((res) => {
+        setCurrentEvent(() => res?.data?.event || {});
+      })
+      .catch((err) => {
+        console.log("While fetching an event -->", err);
+      });
+  }, []);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -23,14 +32,14 @@ function EventDetails() {
           component="img"
           alt="Event Image"
           height="200"
-          image={currentEvent.eventImage}
+          image={currentEvent.imageURL}
         />
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
-            {currentEvent.eventName}
+            {currentEvent.name}
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            {currentEvent.eventDetailsLong}
+            {currentEvent.detail}
           </Typography>
         </CardContent>
         <CardActions>

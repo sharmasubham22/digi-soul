@@ -39,6 +39,36 @@ router.get("/", (req, res) => {
  * @params request, response
  * @return event
  */
+router.get("/event/:eventId", (req, res) => {
+  EventService.getEvent(req.params.eventId)
+    .then((event) => {
+      if (event) {
+        return res.status(200).json({
+          success: true,
+          message: "Event fetched",
+          event: event,
+        });
+      } else {
+        return res.status(404).json({
+          success: false,
+          message: "Event with given id not found",
+        });
+      }
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        success: false,
+        message: "Something went wrong",
+      });
+    });
+});
+
+/**
+ * @author Amanjot Singh
+ * @description Delete event with given id
+ * @params request, response
+ * @return result
+ */
 router.delete("/event/:eventId", (req, res) => {
   EventService.deleteEvent(req.params.eventId)
     .then((deleteResult) => {
@@ -79,6 +109,7 @@ router.put("/event/:eventId", (req, res) => {
         res.status(200).json({
           message: "Event updated",
           success: true,
+          event: event,
         });
       } else {
         res.status(404).json({
@@ -102,13 +133,15 @@ router.put("/event/:eventId", (req, res) => {
  * @return event
  */
 router.post("/", (req, res) => {
-  const event = req.body;
+  const event = req.body.event;
+  console.log("create event-->", event)
   if (event) {
     EventService.createNewEvent(event)
       .then((newEvent) => {
         res.status(200).json({
           message: "Event added",
           success: true,
+          event: { ...newEvent },
         });
       })
       .catch((err) => {
