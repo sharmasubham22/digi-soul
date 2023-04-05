@@ -18,7 +18,7 @@ function MyEvents() {
     // const eventIDs = ["6425bfbbff020e5a650712aa", "6425bfcdff020e5a65072867"];
     axios
       .post("https://digi-soul.onrender.com/api/user_details/fetchevents", {
-        email: "zxcv@dal.ca",
+        email: localStorage.getItem('email'),
       })
       .then((res) => {
         setEventIDs(res?.data?.eventIds);
