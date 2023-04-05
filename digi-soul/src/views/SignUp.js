@@ -127,29 +127,27 @@ export default function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (validate() && formData.password.isError === false &&
-      formData.confirmPassword.isError === false &&
-      formData.firstName.isError === false &&
-      formData.lastName.isError === false &&
-      formData.email.isError === false) {
-      const params = {
-        'firstName': formData.firstName.value,
-        'lastName': formData.lastName.value,
-        'email': formData.email.value,
-        'password': formData.password.value
-      };
-      axios.post("http://localhost:3002/api/user_details/adduser", params).then((resp) => {
-        if (resp.data.success === true) {
-          window.location.href = "/"
-          localStorage.setItem('login', 'true');
-        }
-        else {
-          alert(resp.data.message);
-        }
-      }).catch((err) => {
-        alert(err.response.data.message);
-      })
-    }
+      if (validate() && formData.password.isError === false &&
+          formData.confirmPassword.isError === false &&
+          formData.firstName.isError === false &&
+          formData.lastName.isError === false &&
+          formData.email.isError === false){
+            const params = {'firstName': formData.firstName.value, 
+                            'lastName': formData.lastName.value,
+                            'email': formData.email.value,
+                            'password': formData.password.value};
+            axios.post("http://localhost:3000/adduser", params).then((resp) => {
+              if (resp.data.success === true){
+                window.location.href = "/"
+                localStorage.setItem('login', 'true');
+              }
+              else{
+                alert(resp.data.message);
+              }
+            }).catch((err) => {
+              alert(err.response.data.message);
+            })
+          }
   }
 
   return (
