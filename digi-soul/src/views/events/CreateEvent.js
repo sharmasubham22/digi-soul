@@ -13,11 +13,32 @@ import { useFilePicker } from "use-file-picker";
 import BasicDatePicker from "../../components/BasicDatePicker";
 import { useNavigate } from "react-router-dom";
 import { eventsApi } from "./services/events-api";
+import axios from "axios";
 
 const theme = createTheme();
 
 function CreateEvent() {
   const [eventDate, setEventDate] = React.useState(Date.now());
+  const [Login, setLogin] = React.useState(localStorage.getItem("login"));
+  const [username, setUsername] = React.useState(localStorage.getItem("email"));
+  const dataFetchedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    if (Login == null || Login === "false") {
+      setLogin("false");
+      localStorage.setItem("login", "false");
+      console.log("false called");
+      alert("Please login to create an event");
+      window.location.href = "/login";
+    } else if (Login === "true") {
+      localStorage.setItem("login", "true");
+      setLogin("true");
+      console.log("true called");
+    }
+    console.log(`login value ${Login}`);
+  }, [Login]);
 
   // const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
   //   readAs: "DataURL",
@@ -106,6 +127,10 @@ function CreateEvent() {
         .then((res) => {
           if (res.data.success) {
             console.log("Event Created :)", res.data);
+            axios.post("http://localhost:3002/api/user_details/addevent", {
+              email: username,
+              eventId: res.data?.event?._doc?._id,
+            });
             res.data?.event?._doc?._id
               ? navigate(`/event/${res.data.event._doc._id}`)
               : navigate(`/events/all`);

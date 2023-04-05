@@ -4,27 +4,37 @@ import AddIcon from "@mui/icons-material/Add";
 import MyEventCard from "../../components/MyEventCard";
 // import eventsData from "../../data/events.json";
 import { eventsApi } from "./services/events-api";
+import axios from "axios";
 import UpdateEvent from "./UpdateEvent";
 
 function MyEvents() {
   const [eventsData, setEventsData] = React.useState([]);
-  const dataFetchedRef = useRef(false);
+  const [eventIDs, setEventIDs] = React.useState([]);
+  const dataFetchedRef = React.useRef(false);
 
   React.useEffect(() => {
-    const eventIDs = ["6425bfbbff020e5a650712aa", "6425bfcdff020e5a65072867"];
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
-    eventIDs.map((id) => {
-      eventsApi
-        .getEvent(id)
-        .then((res) => {
-          setEventsData((prev) => [...prev, res?.data?.event || {}]);
-          console.log(eventsData);
-        })
-        .catch((err) => {
-          console.log("While fetching an event -->", err);
+    // const eventIDs = ["6425bfbbff020e5a650712aa", "6425bfcdff020e5a65072867"];
+    axios
+      .post("http://localhost:3002/api/user_details/fetchevents", {
+        email: "zxcv@dal.ca",
+      })
+      .then((res) => {
+        setEventIDs(res?.data?.eventIds);
+        console.log(eventIDs);
+        res?.data?.eventIds.map((id) => {
+          eventsApi
+            .getEvent(id)
+            .then((res) => {
+              setEventsData((prev) => [...prev, res?.data?.event || {}]);
+              console.log(eventsData);
+            })
+            .catch((err) => {
+              console.log("While fetching an event -->", err);
+            });
         });
-    });
+      });
   }, []);
 
   function deleteEvent(id) {
