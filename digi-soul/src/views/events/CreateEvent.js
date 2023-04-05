@@ -19,11 +19,11 @@ const theme = createTheme();
 function CreateEvent() {
   const [eventDate, setEventDate] = React.useState(Date.now());
 
-  const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
-    readAs: "DataURL",
-    accept: "image/*",
-    limitFilesConfig: { max: 1 },
-  });
+  // const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
+  //   readAs: "DataURL",
+  //   accept: "image/*",
+  //   limitFilesConfig: { max: 1 },
+  // });
 
   const [formData, setFormData] = React.useState({
     name: {
@@ -37,7 +37,7 @@ function CreateEvent() {
       errorMessage: "Minimum input size 25",
     },
     imageURL: {
-      value: filesContent[0]?.content || "",
+      value: "",
       isError: false,
       errorMessage: "Upload valid image",
     },
@@ -100,6 +100,7 @@ function CreateEvent() {
           name: formData.name.value,
           brief: formData.brief.value,
           detail: formData.detail.value,
+          imageURL: formData.imageURL.value,
           date: eventDate,
         })
         .then((res) => {
@@ -171,7 +172,7 @@ function CreateEvent() {
                   }
                 />
               </Grid>
-              <Grid item xs={6}>
+              {/* <Grid item xs={6}>
                 <Button
                   type="button"
                   variant="outlined"
@@ -180,6 +181,20 @@ function CreateEvent() {
                 >
                   Select Thumbnail
                 </Button>
+              </Grid> */}
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="imageURL"
+                  label="ImageURL"
+                  name="imageURL"
+                  value={formData.imageURL.value}
+                  onChange={handleChange}
+                  helperText={
+                    formData.imageURL.isError && formData.imageURL.errorMessage
+                  }
+                />
               </Grid>
               <Grid item xs={6} height="100%">
                 <BasicDatePicker value={eventDate} setValue={setEventDate} />
