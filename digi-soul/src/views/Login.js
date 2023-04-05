@@ -97,6 +97,7 @@ export default function Login() {
       db_resp.success
     ) {
       localStorage.setItem("login", "true");
+      localStorage.setItem("email", formData.email.value);
       window.location.href = "/";
     } else {
       alert("login failed");
