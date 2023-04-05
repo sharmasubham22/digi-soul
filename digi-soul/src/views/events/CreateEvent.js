@@ -127,7 +127,7 @@ function CreateEvent() {
         .then((res) => {
           if (res.data.success) {
             console.log("Event Created :)", res.data);
-            axios.post("http://localhost:3002/api/user_details/addevent", {
+            axios.post("https://digi-soul.onrender.com/api/user_details/addevent", {
               email: username,
               eventId: res.data?.event?._doc?._id,
             });

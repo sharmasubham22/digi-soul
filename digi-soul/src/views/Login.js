@@ -82,7 +82,7 @@ export default function Login() {
     };
     let db_resp;
     await axios
-      .post("http://localhost:3002/api/user_details/getuser", params)
+      .post("https://digi-soul.onrender.com/api/user_details/getuser", params)
       .then((resp) => {
         db_resp = resp.data;
         console.log(resp.status, resp.data);
