@@ -12,7 +12,7 @@ function AllEvents() {
     eventsApi
       .getAllEvents()
       .then((res) => {
-        setEventsData(() => res?.data?.events || [])
+        setEventsData(() => res?.data?.events || []);
       })
       .catch((err) => {
         console.log("While fetching events-->", err);

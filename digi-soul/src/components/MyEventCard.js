@@ -9,21 +9,22 @@ import { Container } from "@mui/system";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function MyEventCard(props) {
-  const { id, name, details, imgurl } = props;
+  const { id, name, brief, imageURL } = props;
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="Event Thumbnail"
         height="160"
-        image={imgurl}
+        image={imageURL}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {details}
+          {brief}
         </Typography>
       </CardContent>
       <Container>
@@ -32,10 +33,13 @@ export default function MyEventCard(props) {
           <Button size="small" href={`/event/${id}`}>
             Details
           </Button>
-          <Button size="small">Update</Button>
+          <Button size="small" href={`/event/update/${id}`}>
+            Update
+          </Button>
           <Button
             size="small"
             startIcon={<DeleteIcon color="error" />}
+            onClick={() => props.deleteEvent(id)}
           ></Button>
         </CardActions>
       </Container>

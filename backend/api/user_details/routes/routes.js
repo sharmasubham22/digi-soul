@@ -8,12 +8,13 @@ router.get("/", (req, res) => {
 })
 
 router.post("/adduser", async (req, res) => {
+    console.log(req.body)
     const db_resp = await user_controller.addUser(req.body);
     console.log(db_resp);
-    if (db_resp.success){
+    if (db_resp.success) {
         res.status(200).json(db_resp);
     }
-    else{
+    else {
         res.status(400).json(db_resp);
     }
 })
@@ -21,10 +22,10 @@ router.post("/adduser", async (req, res) => {
 router.post("/getuser", async (req, res) => {
     const db_resp = await user_controller.getUser(req.body);
     console.log(req.body);
-    if (db_resp.success){
+    if (db_resp.success) {
         res.status(200).json(db_resp)
     }
-    else{
+    else {
         res.status(400).json(db_resp)
     }
 })
@@ -81,24 +82,23 @@ router.post("/otp", async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'cryptoproject74@gmail.com',
-          pass: 'emzpnspiovlavmud',
+            user: 'cryptoproject74@gmail.com',
+            pass: 'emzpnspiovlavmud',
         },
       });
-    console.log('otp req recieved');
-    console.log(to_email);
+    
     const mailOptions = {
-    from: 'cryptoproject74@gmail.com',
-    to: to_email,
-    subject: 'One-Time Password (OTP)',
-    text: `Your OTP is ${otp}. Please do not share this OTP with anyone.`,
+        from: 'cryptoproject74@gmail.com',
+        to: to_email,
+        subject: 'One-Time Password (OTP)',
+        text: `Your OTP is ${otp}. Please do not share this OTP with anyone.`,
     };
     transporter.sendMail(mailOptions).then((data) => {
-        res.status(200).json({'success': true, 'otp': otp});
+        res.status(200).json({ 'success': true, 'otp': otp });
     }).catch((err) => {
-        res.status(400).json({'success': false, 'message': 'Couldn\'t send OTP to the registered email.', 'error': err})
+        res.status(400).json({'success': false, 'message': 'Couldn\'t send OTP to the registered email.'})
     });
-    
+
 });
 
 module.exports = router;

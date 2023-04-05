@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Button, TextField, Container } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import './blogs.css'
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ViewBlog = () => {
 
+  const { id } = useParams();
+  const [blog, setBlog] = React.useState([]);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const handleSubmit = (event) => {
@@ -13,15 +17,23 @@ const ViewBlog = () => {
     setNewComment("");
   };
 
+  React.useEffect(() => {
+    axios.get(`http://localhost:3002/api/blog/singleBlog/${id}`).then((res) => {
+      setBlog(res.data.data)
+    }).catch((err) => {
+      alert(err.response.data.message);
+    });
+  }, [])
+
   return (
     <>
       <Container sx={{ marginTop: "25px" }}>
         <Typography variant="h4" component="h1" textAlign="center" gutterBottom>
-          Will AI takeover the world?
+          {blog.Title}
         </Typography>
 
         <img
-          src="https://www.priv.gc.ca/media/4847/ai.jpg"
+          src={`http://localhost:3002/images/${blog.imagePath}`}
           alt=" not available"
           className='blogs-img'
         />
@@ -29,26 +41,17 @@ const ViewBlog = () => {
         <hr />
 
         <Typography variant="body1" gutterBottom>
-          No, AI will not take over the world. AI is a tool created by humans
-          and its behavior is determined by how it is programmed and used. While
-          AI has the potential to greatly benefit society and improve our lives,
-          it is important that its development and deployment are guided by
-          ethical and moral considerations. Additionally, there are technical
-          and practical limitations to what AI can currently do, and it is
-          unlikely that it will surpass human intelligence and agency in the
-          near future. Ultimately, the future of AI depends on the choices and
-          actions of humans, and we must strive to ensure that it is used for
-          the betterment of society.
+          {blog.Content}
         </Typography>
       </Container>
 
-      <Container>
+      {/* <Container>
         <form onSubmit={handleSubmit}>
           <TextField
             id="comment"
             label="Comment box"
             variant="outlined"
-            sx={{width: "100%", marginTop: "1rem"}}
+            sx={{ width: "100%", marginTop: "1rem" }}
             value={newComment}
             onChange={(event) => setNewComment(event.target.value)}
             multiline
@@ -58,7 +61,7 @@ const ViewBlog = () => {
             variant="contained"
             color="primary"
             type="submit"
-            sx={{mt:"1rem"}}
+            sx={{ mt: "1rem" }}
           >
             Submit
           </Button>
@@ -72,7 +75,7 @@ const ViewBlog = () => {
             <li key={index}>{comment}</li>
           ))}
         </ul>
-      </Container>
+      </Container> */}
     </>
   );
 };
