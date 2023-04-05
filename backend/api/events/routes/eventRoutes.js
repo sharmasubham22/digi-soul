@@ -101,10 +101,10 @@ router.delete("/event/:eventId", (req, res) => {
 router.put("/event/:eventId", (req, res) => {
   const eventId = req.params.eventId;
   const event = req.body;
-  console.log("Inside update method -->",eventId);
+  console.log("Inside update method -->", eventId);
   EventService.updateEvent(eventId, event)
     .then((updateResult) => {
-      console.log("Update Result --> ",updateResult);
+      console.log("Update Result --> ", updateResult);
       if (updateResult.acknowledged) {
         res.status(200).json({
           message: "Event updated",
@@ -134,7 +134,7 @@ router.put("/event/:eventId", (req, res) => {
  */
 router.post("/", (req, res) => {
   const event = req.body.event;
-  console.log("create event-->", event)
+  console.log("create event-->", event);
   if (event) {
     EventService.createNewEvent(event)
       .then((newEvent) => {

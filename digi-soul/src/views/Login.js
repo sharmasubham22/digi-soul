@@ -79,7 +79,7 @@ export default function Login(){
         event.preventDefault();
         const params = {'email': formData.email.value, 'password': formData.password.value};
         let db_resp;
-        await axios.post('http://localhost:3000/getuser', params).then((resp)=>{
+        await axios.post('http://localhost:3002/api/user_details/getuser', params).then((resp)=>{
           db_resp = resp.data;
           console.log(resp.status, resp.data);
         }).catch((err) => {
