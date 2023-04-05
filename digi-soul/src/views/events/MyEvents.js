@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import MyEventCard from "../../components/MyEventCard";
 // import eventsData from "../../data/events.json";
 import { eventsApi } from "./services/events-api";
+import UpdateEvent from "./UpdateEvent";
 
 function MyEvents() {
   const [eventsData, setEventsData] = React.useState([]);

@@ -9,15 +9,20 @@ import CalendarMonth from "@mui/icons-material/CalendarMonth";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useFilePicker } from "use-file-picker";
+// import { useFilePicker } from "use-file-picker";
 import BasicDatePicker from "../../components/BasicDatePicker";
 import { useNavigate } from "react-router-dom";
 import { eventsApi } from "./services/events-api";
+import { useParams } from "react-router-dom";
 
 const theme = createTheme();
 
-function CreateEvent() {
-  const [eventDate, setEventDate] = React.useState(Date.now());
+function UpdateEvent() {
+  const { id } = useParams();
+  const [currentEvent, setCurrentEvent] = React.useState([]);
+  const [eventDate, setEventDate] = React.useState(
+    currentEvent?.date || Date.now()
+  );
 
   // const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
   //   readAs: "DataURL",
@@ -27,26 +32,44 @@ function CreateEvent() {
 
   const [formData, setFormData] = React.useState({
     name: {
-      value: "",
+      value: currentEvent.name || "",
       isError: false,
       errorMessage: "Minimum input size 5",
     },
     brief: {
-      value: "",
+      value: currentEvent.brief || "",
       isError: false,
       errorMessage: "Minimum input size 25",
     },
     imageURL: {
-      value: "",
+      value: currentEvent.imageURL || "",
       isError: false,
       errorMessage: "Upload valid image",
     },
     detail: {
-      value: "",
+      value: currentEvent.detail || "",
       isError: false,
       errorMessage: "",
     },
   });
+
+  React.useEffect(() => {
+    eventsApi
+      .getEvent(id)
+      .then((res) => {
+        setCurrentEvent(() => res?.data?.event || {});
+        // setFormData({
+        //   name: { value: currentEvent.name },
+        //   brief: { value: currentEvent.brief },
+        //   imageURL: { value: currentEvent.imageURL },
+        //   detail: { value: currentEvent.detail },
+        // });
+        // setEventDate(currentEvent.date);
+      })
+      .catch((err) => {
+        console.log("While fetching an event -->", err);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -96,7 +119,7 @@ function CreateEvent() {
     event.preventDefault();
     if (validate()) {
       eventsApi
-        .createEvent({
+        .updateEvent(id, {
           name: formData.name.value,
           brief: formData.brief.value,
           detail: formData.detail.value,
@@ -105,7 +128,7 @@ function CreateEvent() {
         })
         .then((res) => {
           if (res.data.success) {
-            console.log("Event Created :)", res.data);
+            console.log("Event Updated :)", res.data);
             res.data?.event?._doc?._id
               ? navigate(`/event/${res.data.event._doc._id}`)
               : navigate(`/events/all`);
@@ -113,7 +136,7 @@ function CreateEvent() {
           }
         })
         .catch((err) => {
-          console.log("Cannot create event due to the error-->,", err);
+          console.log("Cannot update event due to the error-->,", err);
           // TODO: Show err message
         });
     }
@@ -135,7 +158,7 @@ function CreateEvent() {
             <CalendarMonth />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Event Details
+            Update Event Details
           </Typography>
           <Box
             component="form"
@@ -222,7 +245,7 @@ function CreateEvent() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Create Event
+              Update Event
             </Button>
           </Box>
         </Box>
@@ -231,4 +254,4 @@ function CreateEvent() {
   );
 }
 
-export default CreateEvent;
+export default UpdateEvent;
