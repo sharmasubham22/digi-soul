@@ -16,19 +16,9 @@ const createProduct = (product) => {
   return httpClient.post("/products", { product });
 };
 
-const removeProduct = (productId) => {
-  return httpClient.delete(`/products/product/${productId}`);
-};
-
-const updateProduct = (productId, product) => {
-  return httpClient.put(`/products/product/${productId}`, { product });
-};
-
 export const productsApi = {
     getAllProducts,
     getProduct,
-    updateProduct,
-    removeProduct,
     createProduct,
     getProductsByCategory
 }
