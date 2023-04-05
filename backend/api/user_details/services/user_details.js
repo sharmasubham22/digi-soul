@@ -12,7 +12,7 @@ const addUser = async (data) => {
         await User.collection.findOne({'email': data.email}).then((_data) => {
             console.log(_data)
             if (_data == null){
-                let _user = new User(data);
+                let _user = new User({...data, event_ids: []});
                 User.collection.insertOne(_user);
                 resp = {'success': true, 'message': 'user added'};
             }
@@ -86,4 +86,45 @@ const findUser = async (data) => {
     }
 }
 
-module.exports = {addUser, getUser, modifyUser, findUser};
+const addEventUser = async (data) => {
+    if (data?.email && data?.eventId){
+        let resp;
+        await User.collection.findOne({'email': data.email}).then((_user) => {
+            if (_user != null){
+                _user.event_ids.push(data.eventId);
+                console.log(_user)
+                User.collection.findOneAndUpdate({'email': data.email}, {$set: {event_ids: _user.event_ids}}).then((resp) => {
+                    console.log(resp)
+                })
+                resp = {'success': true, 'message': 'Event added'}
+            }
+            else{
+                resp = {'success': false, 'message': 'Email not found'}
+            }
+        })
+        return resp
+    }
+    return {'success': false, 'message': 'Missing params'}
+}
+
+const fetchEventsUser = async (data) => {
+    let user;
+    if (data?.email){
+        await User.collection.findOne({'email': data.email}).then((_user) => {
+            user = _user
+        })
+
+        if (user == null){
+            return {'success': false, 'message': 'Email not found'}
+        }
+        else{
+            return {'success': true, 'eventIds': user.event_ids}
+        }
+    }
+    else{
+        return {'success': false, 'message': 'Missing params'}
+    }
+}
+
+
+module.exports = {addUser, getUser, modifyUser, findUser, addEventUser, fetchEventsUser};
