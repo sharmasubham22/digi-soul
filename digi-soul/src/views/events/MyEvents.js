@@ -25,14 +25,6 @@ function MyEvents() {
           console.log("While fetching an event -->", err);
         });
     });
-    // eventsApi
-    //   .getAllEvents()
-    //   .then((res) => {
-    //     setEventsData(() => res?.data?.events || []);
-    //   })
-    //   .catch((err) => {
-    //     console.log("While fetching events-->", err);
-    //   });
   }, []);
 
   function deleteEvent(id) {
