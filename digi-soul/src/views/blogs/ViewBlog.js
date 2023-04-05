@@ -18,7 +18,7 @@ const ViewBlog = () => {
   };
 
   React.useEffect(() => {
-    axios.get(`http://localhost:3002/api/blog/singleBlog/${id}`).then((res) => {
+    axios.get(`https://digi-soul.onrender.com/api/blog/singleBlog/${id}`).then((res) => {
       setBlog(res.data.data)
     }).catch((err) => {
       alert(err.response.data.message);
@@ -33,7 +33,7 @@ const ViewBlog = () => {
         </Typography>
 
         <img
-          src={`http://localhost:3002/images/${blog.imagePath}`}
+          src={`https://digi-soul.onrender.com/images/${blog.imagePath}`}
           alt=" not available"
           className='blogs-img'
         />
@@ -44,38 +44,6 @@ const ViewBlog = () => {
           {blog.Content}
         </Typography>
       </Container>
-
-      {/* <Container>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            id="comment"
-            label="Comment box"
-            variant="outlined"
-            sx={{ width: "100%", marginTop: "1rem" }}
-            value={newComment}
-            onChange={(event) => setNewComment(event.target.value)}
-            multiline
-            rows={4}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            sx={{ mt: "1rem" }}
-          >
-            Submit
-          </Button>
-        </form>
-
-        <Typography variant="h5" component="h2" gutterBottom>
-          Comments:
-        </Typography>
-        <ul>
-          {comments.map((comment, index) => (
-            <li key={index}>{comment}</li>
-          ))}
-        </ul>
-      </Container> */}
     </>
   );
 };
