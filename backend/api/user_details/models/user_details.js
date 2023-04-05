@@ -5,6 +5,7 @@ const user_details = {
     password: String,
     firstName: String,
     lastName: String,
+    event_ids: [String],
     _id: mongoose.Schema.Types.ObjectId
 };
 

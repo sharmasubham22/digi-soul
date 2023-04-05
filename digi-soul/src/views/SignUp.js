@@ -61,7 +61,7 @@ export default function SignUp() {
     var regexLetters = /^[A-Za-z]+$/;
     var regexEmail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    var regexPassword = /(?=.{8,})./;
+    var regexPassword = '/(?=.{8,})./';
 
     if (!regexLetters.test(formData.firstName.value)) {
       isValidationSuccess = false;
@@ -136,7 +136,7 @@ export default function SignUp() {
                             'lastName': formData.lastName.value,
                             'email': formData.email.value,
                             'password': formData.password.value};
-            axios.post("http://localhost:3000/adduser", params).then((resp) => {
+            axios.post("http://localhost:3002/api/user_details/adduser", params).then((resp) => {
               if (resp.data.success === true){
                 window.location.href = "/"
                 localStorage.setItem('login', 'true');
