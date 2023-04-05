@@ -20,7 +20,7 @@ export default function ColorTextFields() {
     obj1.append("Title", title)
     obj1.append("Content", content)
 
-    axios.post('http://localhost:3002/api/blog', obj1).then((resp) => {
+    axios.post('https://digi-soul.onrender.com/api/blog', obj1).then((resp) => {
       navigate("/homepage");
     }).catch((err) => {
       alert(err.response.data.message);

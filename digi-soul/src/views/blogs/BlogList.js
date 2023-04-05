@@ -14,7 +14,7 @@ export default function BlogList() {
   const [blogs, setBlogs] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get(`http://localhost:3002/api/blog/getAll`).then((res) => {
+    axios.get(`https://digi-soul.onrender.com/api/blog/getAll`).then((res) => {
       setBlogs(res.data.data)
     }).catch((err) => {
       alert(err.response.data.message);
@@ -43,7 +43,7 @@ export default function BlogList() {
                     <CardMedia
                       component="img"
                       height="140"
-                      image={`http://localhost:3002/images/${item.imagePath}`}
+                      image={`https://digi-soul.onrender.com/images/${item.imagePath}`}
                       alt={item.Title}
                     />
                     <CardContent>
