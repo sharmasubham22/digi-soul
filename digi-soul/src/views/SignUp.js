@@ -64,7 +64,7 @@ export default function SignUp() {
     var regexPassword = /(?=.{8,})./;
 
     if (!regexLetters.test(formData.firstName.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         firstName: {
@@ -75,7 +75,7 @@ export default function SignUp() {
     }
 
     if (!regexLetters.test(formData.lastName.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         lastName: {
@@ -86,7 +86,7 @@ export default function SignUp() {
     }
 
     if (!regexEmail.test(formData.email.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         email: {
@@ -99,7 +99,7 @@ export default function SignUp() {
     // TODO: fix password validation
     //if (!regexPassword.test(formData.password.value)) {
     if (!regexPassword.test(formData.password.value)) {
-        isValidationSuccess = false;
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         password: {
@@ -110,9 +110,9 @@ export default function SignUp() {
     }
 
     if (formData.password.value !== formData.confirmPassword.value) {
-        console.log(formData.password.value)
-        console.log(formData.confirmPassword.value)
-        isValidationSuccess = false;
+      console.log(formData.password.value)
+      console.log(formData.confirmPassword.value)
+      isValidationSuccess = false;
       setFormData((prevFormData) => ({
         ...prevFormData,
         confirmPassword: {

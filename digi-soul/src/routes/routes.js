@@ -84,9 +84,13 @@ const routes = [
     element: <BlogList />,
   },
   {
-    path: "/blog1",
+    path: "/blog/:id",
     element: <ViewBlog />,
   },
+  // {
+  //   path: "/blog1",
+  //   element: <ViewBlog />,
+  // },
   {
     path: "/secondblog",
     element: <SecondBlog />,
@@ -155,6 +159,22 @@ const routes = [
     path: "/addproduct",
     element: <AddProduct />,
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path: "/forgotpassword",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword />
+  }
 ];
 
 export default routes;

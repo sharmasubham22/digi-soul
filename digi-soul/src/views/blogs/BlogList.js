@@ -7,61 +7,61 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import axios from "axios";
 
 export default function BlogList() {
+
+  const [blogs, setBlogs] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`http://localhost:3002/api/blog/getAll`).then((res) => {
+      setBlogs(res.data.data)
+    }).catch((err) => {
+      alert(err.response.data.message);
+    });
+  })
+
   return (
-    <Container sx={{mt:4}}>
+    <Container sx={{ mt: 4 }}>
       <Container>
         <Grid container spacing={2} alignItems="center">
           <Grid item></Grid>
         </Grid>
       </Container>
-      <Button href="/addblog" variant="contained" style={{ float:'right' }}>
+      <Button href="/addblog" variant="contained" style={{ float: 'right' }}>
         Add Blog
       </Button>
 
       <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://www.priv.gc.ca/media/4847/ai.jpg"
-                alt="Will AI takeover the world?"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Will AI takeover the world?
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" href="/blog1">
-                  Learn More
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://www.priv.gc.ca/media/5716/synthetic-data.png"
-                alt="The future of AI"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  The future of AI
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" href="/secondblog">
-                  Learn More
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+
+          {blogs.length > 0 && blogs.map(item => {
+            return (
+              <>
+                <Grid item xs={12} sm={6} key={item._id}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={`http://localhost:3002/images/${item.imagePath}`}
+                      alt={item.Title}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.Title}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" href={`/blog/${item._id}`}>
+                        Learn More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              </>)
+          })}
+
+          {blogs.length == 0 && <p>No blogs yet</p>}
         </Grid>
       </Container>
     </ Container>
