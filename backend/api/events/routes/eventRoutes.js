@@ -101,11 +101,11 @@ router.delete("/event/:eventId", (req, res) => {
 router.put("/event/:eventId", (req, res) => {
   const eventId = req.params.eventId;
   const event = req.body;
-  console.log(eventId);
+  console.log("Inside update method -->",eventId);
   EventService.updateEvent(eventId, event)
     .then((updateResult) => {
-      console.log(updateResult);
-      if (updateResult.matchedCount) {
+      console.log("Update Result --> ",updateResult);
+      if (updateResult.acknowledged) {
         res.status(200).json({
           message: "Event updated",
           success: true,

@@ -33,11 +33,13 @@ export default function MyEventCard(props) {
           <Button size="small" href={`/event/${id}`}>
             Details
           </Button>
-          <Button size="small">Update</Button>
+          <Button size="small" href={`/event/update/${id}`}>
+            Update
+          </Button>
           <Button
             size="small"
             startIcon={<DeleteIcon color="error" />}
-            onClick={()=>props.deleteEvent(id)}
+            onClick={() => props.deleteEvent(id)}
           ></Button>
         </CardActions>
       </Container>

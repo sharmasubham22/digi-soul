@@ -17,7 +17,10 @@ const removeEvent = (eventId) => {
 };
 
 const updateEvent = (eventId, event) => {
-  return httpClient.put(`/events/event/${eventId}`, { event });
+  console.log("Events API - updateEvent -->", event);
+  const response = httpClient.put(`/events/event/${eventId}`, { event });
+  console.log("events-api response --> ", response);
+  return response;
 };
 
 export const eventsApi = {
