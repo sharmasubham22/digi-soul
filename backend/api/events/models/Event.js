@@ -1,3 +1,7 @@
+/**
+ * @author Amanjot Singh
+ **/
+
 const mongoose = require("mongoose");
 
 const event = mongoose.Schema({

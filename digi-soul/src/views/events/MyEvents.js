@@ -1,3 +1,7 @@
+/**
+ * @author Amanjot Singh
+ **/
+
 import { Button, Container, Grid } from "@mui/material";
 import React, { useRef } from "react";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,7 +22,7 @@ function MyEvents() {
     // const eventIDs = ["6425bfbbff020e5a650712aa", "6425bfcdff020e5a65072867"];
     axios
       .post("https://digi-soul.onrender.com/api/user_details/fetchevents", {
-        email: "zxcv@dal.ca",
+        email: localStorage.getItem("email"),
       })
       .then((res) => {
         setEventIDs(res?.data?.eventIds);

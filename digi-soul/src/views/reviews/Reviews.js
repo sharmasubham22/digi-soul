@@ -1,3 +1,7 @@
+/**
+ * @author Amanjot Singh
+ **/
+
 import { Container, Grid } from "@mui/material";
 import React from "react";
 import reviewsData from "../../data/reviews.json"
