@@ -21,6 +21,9 @@ import Support from "../views/support/Support";
 import ResetPassword from "../views/ResetPassword";
 import AddProduct from "../views/products/AddProduct";
 import UpdateEvent from "../views/events/UpdateEvent";
+import CreateReview from "../views/reviews/CreateReview";
+import UpdateReview from "../views/reviews/UpdateReview";
+import MyReviews from "../views/reviews/MyReviews";
 
 const routes = [
   {
@@ -79,6 +82,18 @@ const routes = [
     element: <ReviewDetails />,
   },
   {
+    path: "/reviews/create",
+    element: <CreateReview />,
+  },
+  {
+    path: "/review/update/:id",
+    element: <UpdateReview />,
+  },
+  {
+    path: "/reviews/myreviews",
+    element: <MyReviews />,
+  },
+  {
     name: "Blogs",
     path: "/homePage",
     element: <BlogList />,
@@ -87,10 +102,6 @@ const routes = [
     path: "/blog/:id",
     element: <ViewBlog />,
   },
-  // {
-  //   path: "/blog1",
-  //   element: <ViewBlog />,
-  // },
   {
     path: "/secondblog",
     element: <SecondBlog />,
@@ -173,8 +184,8 @@ const routes = [
   },
   {
     path: "/resetpassword",
-    element: <ResetPassword />
-  }
+    element: <ResetPassword />,
+  },
 ];
 
 export default routes;

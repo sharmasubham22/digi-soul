@@ -12,6 +12,6 @@ const review = mongoose.Schema({
   youtube: String,
 });
 
-const reviewSchema = mongoose.model("Reveiws", review);
+const reviewSchema = mongoose.model("Reviews", review);
 
 module.exports = reviewSchema;
