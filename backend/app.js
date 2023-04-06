@@ -9,7 +9,6 @@ const port = process.env.PORT || 3002
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/images', express.static('./images'))
-// TODO: Config cors after deployment with front end URL
 // app.use(cors({
 //   origin: 'http://localhost:3000'
 // }));
