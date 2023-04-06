@@ -1,3 +1,7 @@
+/**
+ * @author Amanjot Singh
+ **/
+
 import { httpClient } from "../../../lib/httpClient";
 
 const getAllEvents = () => {

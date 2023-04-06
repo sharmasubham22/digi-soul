@@ -1,3 +1,7 @@
+/**
+ * @author Amanjot Singh
+ **/
+
 const { eventNames } = require("../models/Event");
 const Event = require("../models/Event");
 

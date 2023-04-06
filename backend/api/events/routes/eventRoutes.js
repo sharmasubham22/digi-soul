@@ -1,3 +1,7 @@
+/**
+ * @author Amanjot Singh
+ **/
+
 const express = require("express");
 const EventService = require("../services/eventServices");
 
