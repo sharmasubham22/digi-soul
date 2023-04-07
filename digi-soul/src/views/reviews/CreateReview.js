@@ -214,7 +214,6 @@ function CreateReview() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="youtube"
                   label="https://www.youtube.com/embed/"
