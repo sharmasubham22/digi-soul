@@ -23,8 +23,8 @@ const deleteEvent = (eventId) => {
 };
 
 const updateEvent = (eventId, event) => {
-  console.log("eventService updateEvent --> ", event, eventId);
-  return Event.updateOne({ _id: eventId }, event);
+  console.log("eventService updateEvent --> ", event.event, eventId);
+  return Event.updateOne({ _id: eventId }, event.event);
 };
 
 module.exports = {

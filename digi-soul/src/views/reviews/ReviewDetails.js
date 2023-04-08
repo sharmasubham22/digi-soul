@@ -42,7 +42,7 @@ function ReviewDetails() {
           <CardMedia
             component="iframe"
             height="500"
-            src={selectedReview.youtube}
+            src={"https://www.youtube.com/embed/"+selectedReview.youtube}
           />
         ) : (
           <CardMedia
