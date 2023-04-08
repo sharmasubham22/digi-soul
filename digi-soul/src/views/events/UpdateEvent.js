@@ -23,7 +23,7 @@ const theme = createTheme();
 
 function UpdateEvent() {
   const { id } = useParams();
-  const [currentEvent, setCurrentEvent] = React.useState([]);
+  const [currentEvent, setCurrentEvent] = React.useState({});
   const [eventDate, setEventDate] = React.useState(
     currentEvent?.date || Date.now()
   );
@@ -61,14 +61,16 @@ function UpdateEvent() {
     eventsApi
       .getEvent(id)
       .then((res) => {
-        setCurrentEvent(() => res?.data?.event || {});
-        // setFormData({
-        //   name: { value: currentEvent.name },
-        //   brief: { value: currentEvent.brief },
-        //   imageURL: { value: currentEvent.imageURL },
-        //   detail: { value: currentEvent.detail },
-        // });
-        // setEventDate(currentEvent.date);
+        const currEvent = res?.data?.event || {};
+        setFormData(() => {
+          return {
+            name: { value: currEvent.name || "" },
+            brief: { value: currEvent.brief || "" },
+            imageURL: { value: currEvent.imageURL || "" },
+            detail: { value: currEvent.detail || "" },
+          };
+        });
+        setEventDate(currEvent.date || "");
       })
       .catch((err) => {
         console.log("While fetching an event -->", err);

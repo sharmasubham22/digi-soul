@@ -122,7 +122,7 @@ function CreateReview() {
           brief: formData.brief.value,
           detail: formData.detail.value,
           imageURL: formData.imageURL.value,
-          youtube: "https://www.youtube.com/embed/" + formData.youtube.value,
+          youtube: formData.youtube.value,
         })
         .then((res) => {
           if (res.data.success) {
@@ -214,7 +214,6 @@ function CreateReview() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="youtube"
                   label="https://www.youtube.com/embed/"

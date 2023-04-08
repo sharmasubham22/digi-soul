@@ -56,7 +56,16 @@ function UpdateReview() {
     reviewsApi
       .getReview(id)
       .then((res) => {
-        setCurrentReview(() => res?.data?.review || {});
+        const currRev = res?.data?.review || {};
+        setFormData(() => {
+          return {
+            name: { value: currRev.name || "" },
+            brief: { value: currRev.brief || "" },
+            imageURL: { value: currRev.imageURL || "" },
+            detail: { value: currRev.detail || "" },
+            youtube: { value: currRev.youtube || ""}
+          };
+        });
       })
       .catch((err) => {
         console.log("While fetching an review -->", err);
@@ -162,7 +171,6 @@ function UpdateReview() {
                   name="name"
                   value={formData.name.value}
                   onChange={handleChange}
-                  required
                   fullWidth
                   id="name"
                   label="Title"
@@ -173,7 +181,6 @@ function UpdateReview() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="brief"
                   label="About"
@@ -187,7 +194,6 @@ function UpdateReview() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="imageURL"
                   label="Thumbnail URL"
@@ -201,7 +207,6 @@ function UpdateReview() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="youtube"
                   label="https://www.youtube.com/embed/"
@@ -215,7 +220,6 @@ function UpdateReview() {
                 </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   multiline
                   style={{ width: "100%" }}
                   name="detail"

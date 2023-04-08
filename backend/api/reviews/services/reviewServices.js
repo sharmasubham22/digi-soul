@@ -22,7 +22,7 @@ const deleteReview = (reviewId) => {
 };
 
 const updateReview = (reviewId, review) => {
-  return Review.updateOne({ _id: reviewId }, review);
+  return Review.updateOne({ _id: reviewId }, review.review);
 };
 
 module.exports = {
