@@ -1,4 +1,4 @@
-// Author: Guru Kiran
+// Author: Guru Kiran(gkiran@dal.ca)
 
 const mongoose = require('mongoose');
 
